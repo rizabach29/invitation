@@ -1,13 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import * as motion from "framer-motion/client";
-import {
-  useMotionValue,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useMotionTemplate, useScroll, useTransform } from "framer-motion";
 import { heading, paragraph } from "../font";
 
 const DURATION = 0.5;
@@ -20,13 +15,14 @@ function Header() {
     offset: ["start start", "end end"],
   });
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const scaleTemplate = useMotionTemplate`scale-${scale}`;
 
   return (
     <div
       ref={containerRef}
       className="sticky top-4 flex flex-row justify-between items-start px-8"
     >
-      <motion.div className="border-t-2 pt-4" style={{ scale }}>
+      <motion.div className={`border-t-2 pt-4 ${scaleTemplate}`}>
         <p
           className={`${paragraph.className}font-thin text-2xl mix-blend-hard-light left-0`}
         >
@@ -43,7 +39,7 @@ function Header() {
           25
         </p>
       </motion.div>
-      <motion.div style={{ scale }} className="flex flex-col items-end">
+      <motion.div className={`flex flex-col items-end ${scaleTemplate}`}>
         <div className="relative overflow-hidden">
           <motion.h1
             initial="initial"
