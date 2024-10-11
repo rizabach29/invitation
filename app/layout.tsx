@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import SmoothScrollProvider from "./smoothscroll-provider";
+import Player from "./(components)/music";
+import Footer from "./(components)/footer";
+import Header from "./(sections)/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,11 +28,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="no-scrollbar">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} no-scrollbar antialiased`}
       >
-        {children}
+        <SmoothScrollProvider>
+          <div className="min-h-screen relative">
+            <Header />
+            {children}
+            <Player url="https://cdn.pixabay.com/audio/2024/10/08/audio_095d37d4a6.mp3" />
+            <Footer />
+          </div>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
