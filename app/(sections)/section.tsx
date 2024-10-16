@@ -5,7 +5,7 @@ function Section({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <section className="min-h-screen">{children}</section>;
+  return <section className="min-h-[75vh]">{children}</section>;
 }
 
 export default Section;
