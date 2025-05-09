@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScrollProvider from "./smoothscroll-provider";
-import Player from "./(components)/music";
-import Footer from "./(components)/footer";
-import Header from "./(components)/header";
+import Footer from "./(sections)/footer";
+import Header from "./(sections)/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,30 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="no-scrollbar">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} no-scrollbar antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} no-scrollbar antialiased bg-amber-50`}
       >
         <SmoothScrollProvider>
-          <div className="min-h-screen relative pt-24">
-            <div className={` text-center w-full flex gap-2 justify-center`}>
-              <p
-                className={`font-medium text-stone-600 text-xl mix-blend-hard-light left-0`}
-              >
-                12
-              </p>
-              <p
-                className={`font-medium text-stone-600 text-xl mix-blend-hard-light left-0`}
-              >
-                AUG
-              </p>
-              <p
-                className={`font-medium text-stone-600 text-xl mix-blend-hard-light left-0`}
-              >
-                25
-              </p>
-            </div>
+          <div className="min-h-screen relative">
             <Header />
             {children}
-            <Player url="https://cdn.pixabay.com/audio/2024/10/08/audio_095d37d4a6.mp3" />
             <Footer />
           </div>
         </SmoothScrollProvider>

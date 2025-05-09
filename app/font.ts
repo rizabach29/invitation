@@ -1,7 +1,8 @@
-import { Libre_Baskerville, Source_Sans_3 } from "next/font/google";
+import { Petrona, Source_Sans_3 } from "next/font/google";
 
-export const heading = Libre_Baskerville({
-  weight: "700",
+export const heading = Petrona({
+  weight: ["400", "700"],
+  variable: "--font-heading",
   subsets: ["latin"],
 });
 

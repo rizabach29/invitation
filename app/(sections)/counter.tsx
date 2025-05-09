@@ -4,7 +4,7 @@ import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 // NOTE: Change this date to whatever date you want to countdown to :)
-const COUNTDOWN_FROM = "2025-08-15";
+const COUNTDOWN_FROM = "2025-09-21";
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
@@ -13,10 +13,10 @@ const DAY = HOUR * 24;
 
 const ShiftingCountdown = () => {
   return (
-    <div className="bg-gradient-to-br bg-stone-600 p-4 min-h-[50vh] relative flex flex-col justify-center items-center">
+    <div className="bg-gradient-to-br bg-[#7C1E2B] p-4 min-h-[50vh] relative flex flex-col justify-center items-center w-full border-4 border-amber-50 rounded-lg overflow-hidden">
       <div className="absolute -right-5 -bottom-5">
-        <p className="text-white/5 text-9xl text-right font-black">12</p>
-        <p className="text-white/5 text-9xl text-right font-black">AUG</p>
+        <p className="text-white/5 text-9xl text-right font-black">21</p>
+        <p className="text-white/5 text-9xl text-right font-black">SEP</p>
         <p className="text-white/5 text-9xl text-right font-black">25</p>
       </div>
       <div className="grid grid-cols-2 gap-8">
