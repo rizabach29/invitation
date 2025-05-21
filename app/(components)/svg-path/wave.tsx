@@ -14,7 +14,7 @@ function Wave({
     scrollYProgress.on("change", (e) => {
       console.log("e", e);
       paths.current.forEach((path, i) => {
-        path?.setAttribute("startOffset", -50 + i * 50 + e * 50 + "%");
+        path?.setAttribute("startOffset", -50 + i * 50 + e * 150 + "%");
       });
     });
   }, []);

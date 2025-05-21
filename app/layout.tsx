@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScrollProvider from "./smoothscroll-provider";
-import Footer from "./(sections)/footer";
-import Header from "./(sections)/header";
+import TranisitionPage from "./(components)/transition-page";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,12 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} no-scrollbar antialiased bg-amber-50`}
       >
+        <TranisitionPage />
         <SmoothScrollProvider>
-          <div className="min-h-screen relative">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <div className="min-h-screen relative">{children}</div>
         </SmoothScrollProvider>
       </body>
     </html>

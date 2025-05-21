@@ -11,9 +11,10 @@ import {
   CardFooter,
   Card,
 } from "@/components/ui/card";
+import { login } from "./actions";
 
 export default async function SignInPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
 
   if (data?.user) {
@@ -47,7 +48,9 @@ export default async function SignInPage() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" name="password" required type="password" />
             </div>
-            <Button className="w-full">Sign in</Button>
+            <Button className="w-full" formAction={login}>
+              Sign in
+            </Button>
           </form>
         </CardContent>
         <CardFooter className="flex flex-col space-y-2">

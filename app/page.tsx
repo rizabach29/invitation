@@ -5,8 +5,11 @@ import Section from "./(components)/section";
 import Detail from "./(sections)/detail";
 import { useEffect, useRef } from "react";
 import { useScroll } from "framer-motion";
-import Player from "./(components)/music";
 import Lenis from "@studio-freight/lenis";
+import Header from "./(sections)/header";
+import Footer from "./(sections)/footer";
+import NavBottom from "./(components)/nav-bottom";
+import Bride from "./(sections)/bride";
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,7 +32,10 @@ export default function Home() {
 
   return (
     <div className="" ref={ref}>
-      <Section>
+      <Section id="head">
+        <Header scrollParentYProgress={scrollYProgress} />
+      </Section>
+      {/* <Section>
         <div className="">
           <img
             src="https://cdnpro.eraspace.com/media/mageplaza/blog/post/a/p/apaitustreetphotography_3.jpeg"
@@ -37,19 +43,19 @@ export default function Home() {
             className="w-screen h-auto"
           />
         </div>
-      </Section>
-      {/* <Section>
-        <Bride />
       </Section> */}
-      <Section>
-        <div className="mt-24">
+      <Section id="bride">
+        <Bride scrollParentYProgress={scrollYProgress} />
+      </Section>
+      <Section id="detail">
+        <div className="mt-24 md:flex md:justify-center md:items-center">
+          <Detail scrollYProgress={scrollYProgress} />
           <Counter />
         </div>
       </Section>
-      <Section>
-        <Detail scrollYProgress={scrollYProgress} />
-      </Section>
-      <Player url="https://cdn.pixabay.com/audio/2024/10/08/audio_095d37d4a6.mp3" />
+      {/* <Player url="https://cdn.pixabay.com/audio/2024/10/08/audio_095d37d4a6.mp3" /> */}
+      <NavBottom />
+      <Footer />
     </div>
   );
 }
