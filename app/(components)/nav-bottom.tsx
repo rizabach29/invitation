@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { useLenis } from "@studio-freight/react-lenis";
+import LogoType from "../sources/illustration/LogoType";
 
 const BottomNav = () => {
   return (
@@ -28,12 +29,10 @@ const SlideTabs = () => {
       className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white p-1"
     >
       <Tab setPosition={setPosition} anchorRef="header">
-        Home
+        <div className="h-8 w-8">
+          <LogoType style={{ height: "100%", width: "100%" }} />
+        </div>
       </Tab>
-      <Tab setPosition={setPosition} anchorRef="bride">
-        Mempelai
-      </Tab>
-      <Tab setPosition={setPosition}>Detail</Tab>
       <Tab setPosition={setPosition}>QR</Tab>
       <Tab setPosition={setPosition}>RSVP</Tab>
 
@@ -58,6 +57,7 @@ const Tab = ({
   >;
 }) => {
   const ref = useRef<HTMLLIElement | null>(null);
+  const lenis = useLenis();
 
   return (
     <li
@@ -73,9 +73,13 @@ const Tab = ({
           opacity: 1,
         });
       }}
+      onClick={() => {
+        if (!anchorRef) return;
+        lenis?.scrollTo(`#${anchorRef}`, { duration: 1 });
+      }}
       className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-base"
     >
-      <Link href={`#${anchorRef}`}>{children}</Link>
+      {children}
     </li>
   );
 };

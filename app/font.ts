@@ -1,4 +1,4 @@
-import { Source_Sans_3, Birthstone_Bounce, Pacifico } from "next/font/google";
+import { Birthstone_Bounce, Pacifico, DM_Serif_Text } from "next/font/google";
 
 export const heading = Pacifico({
   weight: "400",
@@ -6,8 +6,10 @@ export const heading = Pacifico({
   subsets: ["latin"],
 });
 
-export const paragraph = Source_Sans_3({
-  subsets: ["latin"],
+export const paragraph = DM_Serif_Text({
+  weight: ["400"],
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-paragraph",
   display: "swap",
 });
 

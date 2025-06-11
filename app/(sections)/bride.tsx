@@ -1,52 +1,41 @@
 import React, { useRef } from "react";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
-import { PRIMARY_COLOR } from "../utils";
-import RizaKecil from "@/app/public/rizakecil.jpeg";
-import Image, { StaticImageData } from "next/image";
-import { heading, paragraph } from "../font";
+import { motion, MotionValue } from "framer-motion";
+import { paragraph } from "../font";
+import Riza from "../sources/illustration/Riza";
+import Dinnar from "../sources/illustration/Dinnar";
 
 type ItemType = {
   type: string;
   name: string;
-  image: StaticImageData;
+  image: React.ReactNode;
   father: string;
   mother: string;
 };
 
-function Bride({
-  scrollParentYProgress,
-}: {
-  scrollParentYProgress: MotionValue<number>;
-}) {
+function Bride({}: { scrollParentYProgress: MotionValue<number> }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-  });
-
-  console.log(scrollParentYProgress);
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
 
   const data: ItemType[] = [
     {
       type: "Mempelai Wanita",
       name: "Dinnar Fatih Rahmatika Prasetya, S.E.",
-      image: RizaKecil,
+      image: <Dinnar style={{ scale: 0.9 }} />,
       father: "Andik Prasetyanto, S.E.",
       mother: "Setyo Murti Ningsih, S.H.",
     },
     {
       type: "Mempelai Pria",
       name: "Muhammad Riza Bachtiar, S.Tr.Kom.",
-      image: RizaKecil,
+      image: <Riza style={{ scale: 0.9 }} />,
       father: "Muhammad Bachtiar, S.T.",
       mother: "Dijah Lely Kartikarini, A.Md.",
     },
   ];
 
   return (
-    <motion.div ref={ref} className="relative h-[800vh] py-[105vh]">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex">
+    <motion.div ref={ref}>
+      <div className="w-full flex items-center bg-[#BB543B] overflow-clip">
+        <motion.div className="w-full h-full">
           {data.map((item, i) => (
             <>
               <Slide key={i} {...item} />
@@ -60,31 +49,40 @@ function Bride({
 
 function Slide(item: ItemType) {
   return (
-    <div
-      className={`min-w-[100vw] bg-[${PRIMARY_COLOR}] w-full h-screen md:flex items-center justify-center relative`}
-    >
-      <div className="w-full">
-        <Image
-          src={item.image}
-          alt="Riza"
-          width={900}
-          height={1600}
-          className="h-full object-contain grayscale"
-        />
-      </div>
-      <div className="flex flex-col justify-center p-8 w-full lg:absolute lg:left-[45vw]">
-        <p className="uppercase tracking-[1.2rem] text-white">{item.type}</p>
+    <div className={`w-full h-screen flex items-center overflow-clip relative`}>
+      <motion.div
+        className="absolute bottom-24"
+        transition={{
+          duration: 1.5,
+          ease: "easeInOut",
+          delay: 1.5,
+          type: "spring",
+        }}
+        whileInView={{ right: "-5rem", rotate: -30 }}
+        initial={{ right: "-9rem" }}
+      >
+        {item.image}
+      </motion.div>
+      <div className="flex flex-col justify-center p-8 w-full">
+        <p className="uppercase tracking-[1.2rem] text-white text-xs md:text-sm">
+          {item.type}
+        </p>
         <h1
-          className={`text-2xl lg:text-6xl font-bold text-white mt-2 ${heading.className}`}
+          className={`text-2xl lg:text-6xl text-white mt-2 ${paragraph.className}`}
         >
           {item.name}
         </h1>
+        <p className="mt-4 lg:mt-8 text-white tracking-[1.2rem] text-xs md:text-sm">
+          PUTRA DARI
+        </p>
         <h3
-          className={`text-lg lg:text-3xl mt-4 lg:mt-8 text-white ${paragraph.className}`}
+          className={`text-lg lg:text-3xl  text-white font-light ${paragraph.className}`}
         >
           {item.father}
         </h3>
-        <h3 className={`text-lg lg:text-3xl text-white ${paragraph.className}`}>
+        <h3
+          className={`text-lg lg:text-3xl text-white font-light ${paragraph.className}`}
+        >
           {item.mother}
         </h3>
       </div>

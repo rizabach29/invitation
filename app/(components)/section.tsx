@@ -8,7 +8,7 @@ function Section({
   id?: string;
 }>) {
   return (
-    <section id={id} className="min-h-[100vh]">
+    <section id={id} className="min-h-[150vh]">
       {children}
     </section>
   );

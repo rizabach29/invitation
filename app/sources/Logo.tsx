@@ -1,20 +1,21 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, MotionValue } from "framer-motion";
 
 function Logo({
   color = "#fffbeb",
   scale = 1,
 }: {
   color?: string;
-  scale?: number;
+  scale?: number | MotionValue<number>;
 }) {
   return (
-    <div>
+    <div className="w-full h-full">
       <motion.svg
         style={{ scale }}
+        transition={{ type: "spring", stiffness: 200, damping: 5, bounce: 0.5 }}
         width="125"
-        height="125"
-        viewBox="0 0 125 125"
+        height="87"
+        viewBox="0 0 125 87"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

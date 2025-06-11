@@ -1,5 +1,5 @@
 "use client";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { Lenis } from "@studio-freight/react-lenis";
 import React from "react";
 
 function SmoothScrollProvider({
@@ -7,7 +7,19 @@ function SmoothScrollProvider({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <ReactLenis root>{children}</ReactLenis>;
+  return (
+    <Lenis
+      options={{
+        // Higher = more sensitive to touch
+        smoothWheel: true,
+        syncTouch: true,
+        easing: (t) => 1 - Math.pow(1 - t, 4),
+      }}
+      root
+    >
+      {children}
+    </Lenis>
+  );
 }
 
 export default SmoothScrollProvider;

@@ -2,7 +2,6 @@
 
 import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { PRIMARY_COLOR } from "../utils";
 
 // NOTE: Change this date to whatever date you want to countdown to :)
 const COUNTDOWN_FROM = "2025-09-21";
@@ -14,7 +13,7 @@ const DAY = HOUR * 24;
 
 const ShiftingCountdown = () => {
   return (
-    <div className="bg-gradient-to-br py-4 relative flex flex-col justify-center items-center w-full">
+    <div className="bg-gradient-to-br py-4 relative flex flex-col justify-center items-center w-full overflow-clip">
       <div className="absolute -right-5 -bottom-5">
         <p className={`text-black/5 text-9xl text-right font-black`}>21</p>
         <p className={`text-black/5 text-9xl text-right font-black`}>SEP</p>
@@ -44,13 +43,13 @@ const CountdownItem = ({
       <div className="relative w-full overflow-hidden text-center">
         <span
           ref={ref}
-          className={`block text-4xl font-bold text-[${PRIMARY_COLOR}] md:text-4xl lg:text-6xl xl:text-7xl`}
+          className={`block text-4xl font-bold text-red-800 md:text-4xl lg:text-6xl xl:text-7xl`}
         >
           {time}
         </span>
       </div>
       <span
-        className={`text-xl font-thin text-[${PRIMARY_COLOR}] md:text-sm lg:text-base`}
+        className={`text-xl font-thin text-red-800 md:text-sm lg:text-base`}
       >
         {text}
       </span>
