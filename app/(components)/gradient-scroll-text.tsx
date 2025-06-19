@@ -18,7 +18,7 @@ export default function GradientScrollText({
   return (
     <p
       ref={container}
-      className={`${styles.paragraph} ${paragraphStyle.className} max-w-[90vw] text-xl md:text-3xl lg:text-5xl text-center`}
+      className={`${styles.paragraph} ${paragraphStyle.className} max-w-[90vw] text-xl md:text-3xl text-center`}
     >
       {words.map((word, i) => {
         const start = i / words.length;

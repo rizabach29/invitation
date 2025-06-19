@@ -2,6 +2,7 @@
 
 import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { paragraph } from "../font";
 
 // NOTE: Change this date to whatever date you want to countdown to :)
 const COUNTDOWN_FROM = "2025-09-21";
@@ -13,13 +14,23 @@ const DAY = HOUR * 24;
 
 const ShiftingCountdown = () => {
   return (
-    <div className="bg-gradient-to-br py-4 relative flex flex-col justify-center items-center w-full overflow-clip">
+    <div className="py-4 relative flex justify-center items-center w-full overflow-x-clip gap-2">
       <div className="absolute -right-5 -bottom-5">
         <p className={`text-black/5 text-9xl text-right font-black`}>21</p>
         <p className={`text-black/5 text-9xl text-right font-black`}>SEP</p>
         <p className={`text-black/5 text-9xl text-right font-black`}>25</p>
       </div>
-      <div className="grid grid-cols-2 gap-8">
+      <div className={`w-full ${paragraph.className} text-[#BB543B]`}>
+        <p className="text-4xl uppercase">Trimurti Resto</p>
+        <p className="text-2xl mt-2 font-bold tracking-wider">
+          Mercure Surabaya Grand Mirama
+        </p>
+        <p className="mt-4">
+          Jl. Raya Darmo No.68 - 78, DR. Soetomo, Kec. Tegalsari, Surabaya, Jawa
+          Timur 60264
+        </p>
+      </div>
+      <div className="grid grid-cols-2 gap-8 w-full">
         <CountdownItem unit="Day" text="Days" />
         <CountdownItem unit="Hour" text="Hours" />
         <CountdownItem unit="Minute" text="Minutes" />
@@ -43,13 +54,13 @@ const CountdownItem = ({
       <div className="relative w-full overflow-hidden text-center">
         <span
           ref={ref}
-          className={`block text-4xl font-bold text-red-800 md:text-4xl lg:text-6xl xl:text-7xl`}
+          className={`block text-4xl font-bold text-[#BB543B] md:text-4xl lg:text-6xl xl:text-7xl`}
         >
           {time}
         </span>
       </div>
       <span
-        className={`text-xl font-thin text-red-800 md:text-sm lg:text-base`}
+        className={`text-xl font-thin text-[#BB543B] md:text-sm lg:text-base`}
       >
         {text}
       </span>

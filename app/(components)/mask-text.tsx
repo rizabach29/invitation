@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 
 function MaskText({ phrases }: { phrases: string[] }) {
   const body = useRef(null);
-  const isInView = useInView(body, { once: true, margin: "-75%" });
+  const isInView = useInView(body, { margin: "-75%" });
 
   const variants = {
     hidden: { y: "100%" },
@@ -18,22 +18,21 @@ function MaskText({ phrases }: { phrases: string[] }) {
   };
 
   return (
-    <motion.div>
+    <span ref={body}>
       {phrases.map((phrase, index) => {
         return (
-          <div key={index}>
-            <motion.p
-              custom={index}
-              variants={variants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
-              {phrase}
-            </motion.p>
-          </div>
+          <motion.span
+            key={index}
+            custom={index}
+            variants={variants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {phrase}
+          </motion.span>
         );
       })}
-    </motion.div>
+    </span>
   );
 }
 
