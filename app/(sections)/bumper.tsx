@@ -16,17 +16,49 @@ function Bumper() {
   });
   const scale = useTransform(scrollYProgressSpring, [0, 1], [0, 100]);
 
+  const animation = {
+    initial: { y: "100%" },
+    visible: (i: number) => ({
+      y: "0",
+      transition: {
+        duration: 0.75,
+        ease: [0.33, 1, 0.68, 1],
+        delay: 0.075 * i,
+      },
+    }),
+  };
+
   return (
     <div ref={ref} className="w-full h-[200vh] bg-[#BB543B] overflow-clip">
       <motion.div className="top-0 sticky h-screen w-full flex flex-col items-center justify-center">
         <div className="w-full max-w-xs flex flex-col items-center justify-center">
-          <p
-            className={`text-left w-full tracking-[0.5rem] text-amber-50 ${paragraph.className}`}
+          <div
+            className={`text-left flex w-full tracking-[0.5rem] text-amber-50 ${paragraph.className}`}
           >
-            DINNAR
-          </p>
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-            <LogoType reverseColor />
+            {"DINNAR".split("").map((char, index) => (
+              <div key={index} className="overflow-hidden">
+                <motion.div
+                  variants={animation}
+                  custom={index}
+                  animate="visible"
+                  initial="initial"
+                  transition={{
+                    delay: index * 1.5,
+                    duration: 2,
+                  }}
+                  className="relative"
+                >
+                  {char}
+                </motion.div>
+              </div>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+          >
+            <LogoType reverseColor style={{ scale: 0.8 }} />
           </motion.div>
           <div className="">
             <svg
@@ -50,11 +82,27 @@ function Bumper() {
               />
             </svg>
           </div>
-          <p
-            className={`text-right w-full tracking-[0.5rem] text-amber-50 ${paragraph.className}`}
+          <div
+            className={`text-right flex justify-end w-full tracking-[0.5rem] text-amber-50 ${paragraph.className}`}
           >
-            RIZA
-          </p>
+            {"RIZA".split("").map((char, index) => (
+              <div key={index} className="overflow-hidden">
+                <motion.div
+                  variants={animation}
+                  custom={index}
+                  animate="visible"
+                  initial="initial"
+                  transition={{
+                    delay: index * 1.5,
+                    duration: 2,
+                  }}
+                  className="relative"
+                >
+                  {char}
+                </motion.div>
+              </div>
+            ))}
+          </div>
           <div
             className={`text-amber-50 flex flex-col justify-between text-left w-full text-3xl ${paragraph.className}`}
           >
@@ -79,7 +127,7 @@ function Bumper() {
                 whileInView={{ x: 0 }}
                 transition={{
                   duration: 1,
-                  delay: 0.5,
+                  delay: 0.15,
                 }}
               >
                 SEP
@@ -93,12 +141,16 @@ function Bumper() {
                 whileInView={{ x: 0 }}
                 transition={{
                   duration: 1,
-                  delay: 1,
+                  delay: 0.25,
                 }}
               >
                 25
               </motion.p>
             </span>
+          </div>
+          <div className="text-center text-white">
+            <p>Mengundang Bapak/Ibu</p>
+            <h3 className="mt-4">Undangan</h3>
           </div>
         </div>
       </motion.div>

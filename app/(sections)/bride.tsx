@@ -34,7 +34,7 @@ function Bride({}: { scrollParentYProgress: MotionValue<number> }) {
 
   return (
     <motion.div className="flex justify-center">
-      <div className="w-full flex items-center overflow-clip max-w-7xl">
+      <div className="w-full flex items-center overflow-clip max-w-2xl">
         <motion.div className="w-full h-full">
           <Slide {...data[0]} />
           <div
@@ -50,8 +50,8 @@ function Bride({}: { scrollParentYProgress: MotionValue<number> }) {
                 once: true,
               }}
               className="top-0"
-              whileInView={{ rotate: 40, x: "-120%" }}
-              initial={{ rotate: 0, x: "-180%" }}
+              whileInView={{ rotate: 40, x: "-100%" }}
+              initial={{ rotate: 0, x: "-100%" }}
             >
               <Dinnar style={{ scale: 1 }} />
             </motion.div>
@@ -61,13 +61,13 @@ function Bride({}: { scrollParentYProgress: MotionValue<number> }) {
               viewBox="0 0 433 216"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="absolute top-0 left-8 w-full h-full text-center text-amber-50"
+              className="absolute top-0 w-full h-full text-center text-amber-50"
             >
               <motion.path
                 d="M213.75 23.0302C221.18 22.5402 225.46 28.2702 223.7 35.3702C222.27 41.1502 216.55 46.1302 211.95 49.5202C210.14 50.8602 204.35 55.0902 202.4 55.1002C198.97 55.1102 192.15 49.4202 189.56 47.0602C185.45 43.3002 179.77 37.0502 180.7 31.0102C180.88 29.8302 182.22 28.5502 183.27 28.0602C188.96 25.4002 193.92 30.6802 198.28 33.4802C202.39 28.7202 206.99 23.4702 213.74 23.0302H213.75Z"
                 fill="#F4D9AA"
                 initial={{ scale: 1.5 }}
-                animate={{ scale: 2.5 }}
+                animate={{ scale: 2.3 }}
                 transition={{
                   duration: 0.6,
                   ease: "easeInOut",
@@ -85,8 +85,8 @@ function Bride({}: { scrollParentYProgress: MotionValue<number> }) {
                 once: true,
               }}
               className="top-0 mt-2"
-              whileInView={{ rotate: -40, x: "120%" }}
-              initial={{ rotate: 0, x: "180%" }}
+              whileInView={{ rotate: -40, x: "100%" }}
+              initial={{ rotate: 0, x: "100%" }}
             >
               <Riza style={{ scale: 0.9 }} />
             </motion.div>

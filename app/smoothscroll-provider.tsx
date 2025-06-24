@@ -14,6 +14,7 @@ function SmoothScrollProvider({
         smoothWheel: true,
         syncTouch: true,
         easing: (t) => 1 - Math.pow(1 - t, 4),
+        lerp: 0.02,
       }}
       root
     >

@@ -12,13 +12,13 @@ function Footer() {
     >
       {/* create rsvp form */}
       <motion.div
-        className="fixed bottom-0 h-screen w-full max-w-3xl bg-stone-200 flex flex-col justify-end items-center"
+        className="fixed bottom-0 h-screen w-full max-w-2xl bg-stone-200 flex flex-col justify-end items-center"
         initial={{ y: 100 }}
         whileInView={{ y: 0 }}
         transition={{ duration: 1 }}
       >
-        <div className="w-full flex justify-center items-center h-full max-w-3xl relative">
-          <form className="p-8 w-full flex flex-col items-end">
+        <div className="w-full flex justify-center items-center h-full max-w-2xl">
+          <form className="p-8 w-full flex flex-col items-end max-w-2xl">
             <h2 className={`${paragraph.className} text-2xl mb-4 text-right`}>
               Konfirmasi Kehadiran
             </h2>

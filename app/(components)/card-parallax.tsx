@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import styles from "./style.module.scss";
-import Mercure from "@/app/public/mercure.webp";
 import { MotionValue, useTransform, motion } from "framer-motion";
 import { paragraph } from "../font";
 
@@ -20,7 +19,6 @@ const CardParallax = ({
   title,
   description,
   src,
-  i,
   progress,
   range,
   targetScale,
@@ -28,14 +26,8 @@ const CardParallax = ({
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div className="rounded sticky top-0 h-screen flex flex-col items-center justify-center">
-      <motion.div
-        style={{
-          // top: `calc(-5vh + ${i * 80}px)`,
-          scale,
-        }}
-        className="rounded relative flex"
-      >
+    <div className="rounded sticky top-0 h-screen pb-36 flex flex-col items-center justify-center">
+      <motion.div className="rounded relative flex">
         {/* <div className="relative rounded">
           <div className="h-32 overflow-clip">
             <Image
