@@ -148,11 +148,32 @@ function Bumper() {
               </motion.p>
             </span>
           </div>
-          <div className="text-center text-white">
-            <p>Mengundang Bapak/Ibu</p>
-            <h3 className="mt-4">Undangan</h3>
-          </div>
         </div>
+        <motion.div className="w-full max-w-2xl mt-8 flex justify-end">
+          <motion.div
+            initial={{ x: "100%" }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 1 }}
+            className="text-right text-[#BC533B] bg-amber-50 pt-4 pb-5 px-8 rounded-l-full"
+          >
+            <motion.p
+              initial={{ x: "100%" }}
+              whileInView={{ x: 0 }}
+              transition={{ duration: 1, delay: 0.07 }}
+              className="text-sm"
+            >
+              Mengundang Bapak/Ibu
+            </motion.p>
+            <motion.h3
+              initial={{ x: "100%" }}
+              whileInView={{ x: 0 }}
+              transition={{ duration: 1, delay: 0.025 }}
+              className="mt-2 font-bold"
+            >
+              Muhammad Bachtiar
+            </motion.h3>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </div>
   );

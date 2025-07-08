@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { paragraph } from "../font";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import SmoothMarquee from "../(components)/smooth-marque";
 
 function Footer() {
   return (
@@ -23,13 +24,15 @@ function Footer() {
               Konfirmasi Kehadiran
             </h2>
             <div className="flex gap-2 w-full">
-              <Button className="w-full bg-red-500">Tidak Hadir</Button>
-              <Button className="w-full bg-green-500">Hadir</Button>
+              <Button className="w-full" variant={"outline"}>
+                Tidak Hadir
+              </Button>
+              <Button className="w-full">Hadir</Button>
             </div>
             <div className="mb-4 w-full">
               <Textarea
                 id="message"
-                className="border border-gray-300 p-2 w-full mt-12"
+                className="border bg-amber-50 border-gray-300 p-2 w-full mt-12"
                 placeholder="Tinggalkan pesan untuk mempelai"
                 rows={4}
                 required
@@ -37,6 +40,11 @@ function Footer() {
             </div>
             <Button type="submit">Submit</Button>
           </form>
+        </div>
+        <div
+          className={`text-7xl text-center text-[#BB543B] mb-4 uppercase ${paragraph.className}`}
+        >
+          <SmoothMarquee text="SEPTEMBER CERIA . SEPTEMBER CERIA . " />
         </div>
       </motion.div>
     </div>

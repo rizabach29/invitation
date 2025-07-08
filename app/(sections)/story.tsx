@@ -3,6 +3,7 @@ import { useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Mercure from "@/app/public/mercure.webp";
+import { paragraph } from "../font";
 
 type TStory = {
   title: string;
@@ -96,7 +97,7 @@ function DescStory(item: { story: TStory; index: number; currIndex: number }) {
             initial="hidden"
             custom={index}
             animate={item.currIndex == item.index ? "visible" : "hidden"}
-            className="text-base md:text-lg lg:text-xl pb-4 indent-8 relative"
+            className={`text-base md:text-lg lg:text-xl pb-4 indent-8 relative ${paragraph.className} text-[#BC533B]`}
           >
             {desc}
           </motion.p>
@@ -113,7 +114,14 @@ function Story() {
     offset: ["start end", "end start"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["110%", "-100%"]); // Adjust as needed
+  const imageContainer = useRef(null);
+  const { scrollYProgress: scrollYProgress2 } = useScroll({
+    target: imageContainer,
+    offset: ["center center", "start end"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["20%", "-100%"]); // Adjust as needed
+  const scaleImage = useTransform(scrollYProgress2, [0, 1], ["1", "0.9"]); // Adjust as needed
 
   const currIndex = useTransform(scrollYProgress, (v) => {
     if (v <= 0.35) return 0;
@@ -130,8 +138,28 @@ function Story() {
 
   return (
     <div ref={container} className="w-full h-[300vh] flex jusitfy-center">
-      <div className="h-screen sticky top-0 w-full pt-32 overflow-x-clip">
-        <div className="px-8">
+      <div className="h-screen sticky top-0 w-full overflow-x-clip">
+        <motion.div
+          ref={imageContainer}
+          className="h-64 overflow-clip"
+          // className="flex items-center justify-center"
+          style={{ scale: scaleImage }}
+          // initial={{ scale: 0.8 }}
+          // whileInView={{ scale: 1 }}
+        >
+          <motion.div style={{ y }}>
+            {[0, 1, 2].map((index) => (
+              <Image
+                key={index}
+                src={Mercure}
+                alt={stories[index].title}
+                width={2000}
+                className={`w-full h-64 object-cover transition-transform duration-300 grayscale`}
+              />
+            ))}
+          </motion.div>
+        </motion.div>
+        <div className="px-8 pt-12">
           {stories.map((story, index) => (
             <>
               <HeaderStory
@@ -145,24 +173,15 @@ function Story() {
         <div className="px-8">
           {stories.map((story, index) => (
             <>
-              <DescStory story={story} index={index} currIndex={currIndexVal} />
+              <DescStory
+                key={index}
+                story={story}
+                index={index}
+                currIndex={currIndexVal}
+              />
             </>
           ))}
         </div>
-        <motion.div
-          className="flex items-center justify-center h-full gap-10 pt-48"
-          style={{ x }}
-        >
-          {[0, 1, 2].map((index) => (
-            <Image
-              key={index}
-              src={Mercure}
-              alt={stories[index].title}
-              width={96}
-              className={`w-96 h-56 object-cover rounded-tr-3xl rounded-tl-md rounded-bl-3xl rounded-br-md transition-transform duration-300 grayscale`}
-            />
-          ))}
-        </motion.div>
       </div>
     </div>
   );

@@ -8,13 +8,14 @@ import Header from "./(sections)/header";
 import Footer from "./(sections)/footer";
 import Bride from "./(sections)/bride";
 import Verse from "./(sections)/verse";
-import Story from "./(sections)/story";
+// import Story from "./(sections)/story";
 import Wiggle from "./(components)/svg-path/wiggle";
 import SmoothScrollProvider from "./smoothscroll-provider";
 import { paragraph } from "./font";
 import { motion } from "framer-motion";
 import Bumper from "./(sections)/bumper";
 import Player from "./(components)/music";
+import StoryCard from "./(sections)/story-card";
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
@@ -75,12 +76,15 @@ export default function Home() {
                   <br />
                   Cinta
                 </h3>
-                <Story />
+                {/* <Story /> */}
+                <div className="mt-8">
+                  <StoryCard />
+                </div>
               </div>
             </motion.div>
           </Section>
           <Section id="detail">
-            <div className="mt-24 md:flex md:justify-center md:items-center">
+            <div className="mt-24 md:flex md:justify-center md:items-center pb-48">
               <Counter />
             </div>
           </Section>
