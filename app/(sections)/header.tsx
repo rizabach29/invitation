@@ -30,7 +30,10 @@ function Header({}: { scrollParentYProgress: MotionValue<number> }) {
       {/* <div className="absolute flex justify-center items-center w-full mt-6 opacity-5">
         <LogoType style={{ scale: 6.5 }} />
       </div> */}
-      <div className="flex flex-col w-full h-screen sticky top-0 items-center justify-center">
+      <div
+        className="flex flex-col w-full h-screen sticky top-0 items-center justify-center pb-24"
+        style={{ scale: 0.85 }}
+      >
         <motion.div
           style={{ y: y }}
           variants={{ init: { scale: 0 }, animate: { scale: 0.85 } }}

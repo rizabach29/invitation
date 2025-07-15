@@ -49,7 +49,7 @@ function StoryCard() {
           <h2 className="text-6xl w-full text-right pr-12">{story.title}</h2>
           <div className="flex items-center justify-center">
             <motion.ul
-              className="h-full mt-8 text-xs md:text-sm max-w-md"
+              className="h-full mt-8 text-sm max-w-md"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}

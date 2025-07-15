@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 import Bumper from "./(sections)/bumper";
 import Player from "./(components)/music";
 import StoryCard from "./(sections)/story-card";
+import Qr from "./qr-code";
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
@@ -89,7 +90,7 @@ export default function Home() {
             </div>
           </Section>
           <Player url="/september-ceria.mp3" />
-          {/* <NavBottom /> */}
+          <Qr />
           <Footer />
         </div>
       </div>

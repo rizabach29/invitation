@@ -2,14 +2,17 @@
 
 import React from "react";
 import TableGuest from "./table";
-import ButtonScan from "./button-scan";
+import Logo from "@/app/sources/Logo";
 
 export default function Page() {
   return (
     <>
-      {/* <Scanner onScan={(result) => console.log(result)} /> */}
+      <div className="flex items-center justify-center w-full">
+        <div className="w-auto py-4">
+          <Logo color="#000000" />
+        </div>
+      </div>
       <TableGuest />
-      <ButtonScan />
     </>
   );
 }

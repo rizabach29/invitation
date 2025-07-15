@@ -1,11 +1,48 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { paragraph } from "../font";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import SmoothMarquee from "../(components)/smooth-marque";
+import Messages from "./messages";
+import { useSearchParams } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
+import { toast } from "sonner";
 
 function Footer() {
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get("id");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    if (message.trim() === "") {
+      alert("Pesan tidak boleh kosong");
+      e.preventDefault();
+      return;
+    }
+
+    e.preventDefault();
+    setLoading(true);
+    const supabase = createClient();
+    const { error } = await supabase.from("wishes").insert({
+      id,
+      guest_id: id,
+      wish: message,
+    });
+
+    setLoading(false);
+    if (error) {
+      toast.error("Gagal mengirim pesan: " + error.message);
+      return;
+    }
+
+    setMessage("");
+  };
+
   return (
     <div
       className="relative h-screen"
@@ -36,9 +73,14 @@ function Footer() {
                 placeholder="Tinggalkan pesan untuk mempelai"
                 rows={4}
                 required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               ></Textarea>
             </div>
-            <Button type="submit">Submit</Button>
+            <Button onClick={handleSubmit} disabled={loading}>
+              Submit
+            </Button>
+            <Messages />
           </form>
         </div>
         <div

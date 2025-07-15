@@ -2,7 +2,6 @@
 
 import { Database } from "@/app/type";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/utils/supabase/client";
@@ -60,37 +59,40 @@ function TableGuest() {
     },
     {
       accessorKey: "guest_num",
-      header: () => <p className="text-center">Jumlah Tamu</p>,
+      header: () => <p className="text-center">Jumlah Undangan</p>,
       cell: (info) => (
         <p className="text-center">{info.getValue() as React.ReactNode}</p>
       ),
     },
+    // {
+    //   accessorKey: "guest_num_attd",
+    //   header: () => <p className="text-center">Jumlah Hadir</p>,
+    //   cell: (info) => (
+    //     <p className="text-center">{info.getValue() as React.ReactNode}</p>
+    //   ),
+    // },
     {
-      accessorKey: "guest_num_attd",
-      header: () => <p className="text-center">Jumlah Hadir</p>,
-      cell: (info) => (
-        <p className="text-center">{info.getValue() as React.ReactNode}</p>
-      ),
-    },
-    {
-      accessorKey: "is_present",
-      header: "Hadir",
-      cell: (info) =>
-        info.getValue() ? (info.getValue() != null ? "Ya" : "Tidak") : null,
-    },
-    // actions column can be added here if needed
-    {
-      id: "actions",
-      header: "Aksi",
+      accessorKey: "presence_at",
+      header: () => <p className="text-center">Kehadiran</p>,
       cell: (info) => {
-        if (!info.row.original.guest_num_attd) {
+        const presenceAt = info.getValue() as string | null;
+        if (presenceAt) {
+          const date = new Date(presenceAt);
           return (
-            <Button size="sm" variant="outline">
-              Hadir
-            </Button>
+            <p className="text-center">
+              {date.toLocaleString("id-ID")}
+              {/* {date.toLocaleDateString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })} */}
+            </p>
           );
         }
-      }, // Placeholder for actions
+        return <p className="text-center">Belum Hadir</p>;
+      },
     },
   ];
 
@@ -102,7 +104,12 @@ function TableGuest() {
 
   const fetchData = async () => {
     const supabase = await createClient();
-    const { data, error } = await supabase.from("guests").select("*");
+    const { data, error } = await supabase
+      .from("guests")
+      .select("*")
+      .not("presence_at", "is", null)
+      .order("presence_at", { ascending: false });
+
     if (error) {
       console.error("Error fetching guests:", error);
       return;
@@ -140,7 +147,7 @@ function TableGuest() {
   }, [searchTerm, data]);
 
   return (
-    <div className="flex items-center justify-center mb-4 w-full min-h-screen">
+    <div className="flex mb-4 min-w-[50vw] min-h-screen">
       <Card className="max-w-4xl w-full p-8 h-full min-h-[90vh]">
         <div className="flex justify-between gap-2 pb-4">
           <Input

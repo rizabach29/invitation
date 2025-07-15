@@ -15,6 +15,7 @@ function Bumper() {
     damping: 40,
   });
   const scale = useTransform(scrollYProgressSpring, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgressSpring, [0, 0.3], [0, 1]);
 
   const animation = {
     initial: { y: "100%" },
@@ -72,8 +73,8 @@ function Bumper() {
               <motion.path
                 d="M213.75 23.0302C221.18 22.5402 225.46 28.2702 223.7 35.3702C222.27 41.1502 216.55 46.1302 211.95 49.5202C210.14 50.8602 204.35 55.0902 202.4 55.1002C198.97 55.1102 192.15 49.4202 189.56 47.0602C185.45 43.3002 179.77 37.0502 180.7 31.0102C180.88 29.8302 182.22 28.5502 183.27 28.0602C188.96 25.4002 193.92 30.6802 198.28 33.4802C202.39 28.7202 206.99 23.4702 213.74 23.0302H213.75Z"
                 fill="#FFFBEB"
-                style={{ scale }}
-                initial={{ scale: 0 }}
+                style={{ scale, opacity }}
+                initial={{ scale: 0, opacity: 0 }}
                 transition={{
                   ease: "easeInOut",
                   repeat: Infinity,
