@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { Suspense } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} no-scrollbar overflow-x-clip antialiased bg-amber-50`}
       >
-        <main className="min-h-screen relative">{children}</main>
+        <main className="min-h-screen relative">
+          <Suspense>{children}</Suspense>
+        </main>
         <Toaster />
       </body>
     </html>
