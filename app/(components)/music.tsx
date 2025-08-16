@@ -40,7 +40,7 @@ const Player = ({ url }: { url: string }) => {
   return (
     <div>
       <button
-        className="p-4 rounded-full bg-white text-black font-black fixed bottom-6 right-6"
+        className="p-4 rounded-full bg-white text-black font-black text-sm fixed z-50 bottom-6 right-6"
         onClick={() => toggle()}
       >
         {playing ? "Pause" : "Play"}

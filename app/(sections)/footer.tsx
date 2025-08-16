@@ -7,20 +7,27 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import SmoothMarquee from "../(components)/smooth-marque";
 import Messages from "./messages";
-import { useSearchParams } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { Database } from "../type";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
 
-function Footer() {
-  const searchParams = useSearchParams();
-
-  const id = searchParams.get("id");
+function Footer({
+  guest,
+}: {
+  guest: Database["public"]["Tables"]["guests"]["Row"] | null;
+}) {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [wish, setWish] = useState({
+    guest: "",
+    message: "",
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    if (message.trim() === "") {
-      alert("Pesan tidak boleh kosong");
+    if (wish.message.trim() === "" || wish.guest.trim() === "") {
+      alert("Pesan dan nama tamu tidak boleh kosong");
       e.preventDefault();
       return;
     }
@@ -29,9 +36,8 @@ function Footer() {
     setLoading(true);
     const supabase = createClient();
     const { error } = await supabase.from("wishes").insert({
-      id,
-      guest_id: id,
-      wish: message,
+      wish: wish.message,
+      guest: wish.guest,
     });
 
     setLoading(false);
@@ -40,12 +46,29 @@ function Footer() {
       return;
     }
 
-    setMessage("");
+    setWish({ guest: "", message: "" });
+  };
+
+  const presence = async (isPresence: boolean) => {
+    const supabase = createClient();
+    const { error } = await supabase
+      .from("guests")
+      .update({
+        is_present: isPresence,
+      })
+      .eq("id", guest?.id);
+
+    if (error) {
+      toast.error("Gagal mengupdate kehadiran: " + error.message);
+      return;
+    }
+
+    toast.success("Kehadiran berhasil diupdate");
   };
 
   return (
     <div
-      className="relative h-screen"
+      className="relative min-h-screen"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       {/* create rsvp form */}
@@ -56,32 +79,80 @@ function Footer() {
         transition={{ duration: 1 }}
       >
         <div className="w-full flex justify-center items-center h-full max-w-2xl">
-          <form className="p-8 w-full flex flex-col items-end max-w-2xl">
-            <h2 className={`${paragraph.className} text-2xl mb-4 text-right`}>
-              Konfirmasi Kehadiran
-            </h2>
-            <div className="flex gap-2 w-full">
-              <Button className="w-full" variant={"outline"}>
-                Tidak Hadir
-              </Button>
-              <Button className="w-full">Hadir</Button>
-            </div>
+          <div className="p-8 w-full flex flex-col max-w-2xl">
+            {guest && (
+              <>
+                <div className="w-full flex justify-between mb-4">
+                  <h2
+                    className={`${paragraph.className} text-2xl text-lime-900`}
+                  >
+                    Konfirmasi Kehadiran
+                  </h2>
+                  <p className={`${paragraph.className} text-lime-900 p-0 m-0`}>
+                    {guest.name}
+                  </p>
+                </div>
+                <div className="flex gap-2 w-full mb-12">
+                  <Button
+                    className="w-full text-lime-900"
+                    variant={"outline"}
+                    onClick={() => presence(false)}
+                  >
+                    Tidak Hadir
+                  </Button>
+                  <Button
+                    className="w-full bg-lime-900 text-white"
+                    onClick={() => presence(true)}
+                  >
+                    Hadir
+                  </Button>
+                </div>
+                <Separator className="mt-4 mb-16 border-gray-300 border-[1px]" />
+              </>
+            )}
             <div className="mb-4 w-full">
+              <h2
+                className={`${paragraph.className} text-2xl mb-4 text-right text-lime-900`}
+              >
+                Tinggalkan Pesan untuk Mempelai
+              </h2>
+              <Input
+                placeholder="Nama Anda"
+                className="border bg-amber-50 border-gray-300 p-2 w-full mt-4"
+                value={wish.guest}
+                onChange={(e) => setWish({ ...wish, guest: e.target.value })}
+              />
               <Textarea
                 id="message"
-                className="border bg-amber-50 border-gray-300 p-2 w-full mt-12"
+                className="border bg-amber-50 border-gray-300 p-2 w-full mt-4"
                 placeholder="Tinggalkan pesan untuk mempelai"
                 rows={4}
                 required
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                value={wish.message}
+                onChange={(e) => setWish({ ...wish, message: e.target.value })}
               ></Textarea>
             </div>
-            <Button onClick={handleSubmit} disabled={loading}>
-              Submit
+            <Button
+              onClick={handleSubmit}
+              className="bg-lime-900 text-white"
+              disabled={loading}
+            >
+              Kirim
             </Button>
-            <Messages />
-          </form>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  className="text-lime-900 bg-transparent mt-4"
+                  variant={"ghost"}
+                >
+                  Lihat Pesan
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="w-full max-w-2xl">
+                <Messages />
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
         <div
           className={`text-7xl text-center text-[#BB543B] mb-4 uppercase ${paragraph.className}`}

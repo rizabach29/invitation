@@ -5,8 +5,8 @@ import React from "react";
 import TableGuest from "./table";
 import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 import { paragraph } from "@/app/font";
-import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
+import CustomGuest from "./custom-guest";
 
 function Page() {
   const onScan = async (result: IDetectedBarcode[]) => {
@@ -46,7 +46,7 @@ function Page() {
       </div>
       <div className="flex justify-center w-full gap-4">
         <div>
-          <Button className="mb-2">Tambah Kehadiran</Button>
+          <CustomGuest />
           <TableGuest />
         </div>
         <div

@@ -36,7 +36,7 @@ function Header({}: { scrollParentYProgress: MotionValue<number> }) {
       >
         <motion.div
           style={{ y: y }}
-          variants={{ init: { scale: 0 }, animate: { scale: 0.85 } }}
+          variants={{ init: { scale: 0.85 }, animate: { scale: 0.85 } }}
           initial="init"
           animate={isInView ? "animate" : "init"}
           transition={{
@@ -54,7 +54,7 @@ function Header({}: { scrollParentYProgress: MotionValue<number> }) {
           <motion.h3
             animate={isInView ? "animate" : "init"}
             variants={{
-              init: { y: "150%" },
+              init: { y: 0 },
               animate: { y: 0 },
             }}
             transition={{ duration: 1.5, type: "spring", delay: 1 }}
@@ -68,7 +68,7 @@ function Header({}: { scrollParentYProgress: MotionValue<number> }) {
             <motion.h3
               animate={isInView ? "animate" : "init"}
               variants={{
-                init: { y: "150%" },
+                init: { y: 0 },
                 animate: { y: 0 },
               }}
               transition={{ duration: 1.5, type: "spring", delay: 1 }}
@@ -79,7 +79,7 @@ function Header({}: { scrollParentYProgress: MotionValue<number> }) {
             <motion.h3
               animate={isInView ? "animate" : "init"}
               variants={{
-                init: { y: "150%" },
+                init: { y: 0 },
                 animate: { y: 0 },
               }}
               transition={{ duration: 1.5, type: "spring", delay: 1 }}
@@ -90,7 +90,7 @@ function Header({}: { scrollParentYProgress: MotionValue<number> }) {
             <motion.h3
               animate={isInView ? "animate" : "init"}
               variants={{
-                init: { y: "150%" },
+                init: { y: 0 },
                 animate: { y: 0 },
               }}
               transition={{ duration: 1.5, type: "spring", delay: 1 }}

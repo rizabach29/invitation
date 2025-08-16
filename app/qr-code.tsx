@@ -15,8 +15,8 @@ function Qr() {
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <div className="fixed bottom-0 right-0 m-8 bg-black rounded-full p-4 text-white hover:bg-gray-800 transition-colors flex flex-col items-center justify-center cursor-pointer">
-            <QrCodeIcon size={50} />
+          <div className="fixed bottom-0 left-0 m-8 bg-black rounded-full p-2 text-white hover:bg-gray-800 transition-colors flex flex-col items-center justify-center cursor-pointer">
+            <QrCodeIcon size={30} />
           </div>
         </DialogTrigger>
         <DialogContent>

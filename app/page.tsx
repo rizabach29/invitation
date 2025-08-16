@@ -2,7 +2,7 @@
 
 import Counter from "./(sections)/counter";
 import Section from "./(components)/section";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useScroll } from "framer-motion";
 import Header from "./(sections)/header";
 import Footer from "./(sections)/footer";
@@ -17,6 +17,10 @@ import Bumper from "./(sections)/bumper";
 import Player from "./(components)/music";
 import StoryCard from "./(sections)/story-card";
 import Qr from "./qr-code";
+import Dresscode from "./(sections)/dresscode";
+import { useSearchParams } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
+import { Database } from "./type";
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,12 +29,45 @@ export default function Home() {
     offset: ["start end", "end start"],
   });
 
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get("id");
+
+  const [guest, setGuest] = useState<
+    Database["public"]["Tables"]["guests"]["Row"] | null
+  >(null);
+
+  const fetchGuest = async () => {
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from("guests")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) {
+      console.error("Error fetching guest:", error);
+      return;
+    }
+
+    setGuest(data);
+  };
+
+  useEffect(() => {
+    if (!id) {
+      setGuest(null);
+      return;
+    }
+
+    fetchGuest();
+  }, [id]);
+
   return (
     <SmoothScrollProvider>
       <div className="w-full flex flex-col items-center">
         <div className="snap-y snap-mandatory max-w-2xl" ref={ref}>
           <Section id="bumper">
-            <Bumper />
+            <Bumper guest={guest} />
           </Section>
           <Section id="header">
             <Header scrollParentYProgress={scrollYProgress} />
@@ -52,7 +89,7 @@ export default function Home() {
           <Section id="bride">
             <div className="w-full h-full bg-[#BB543B] pt-24 pb-48 rounded-b-full">
               <h3
-                className={`text-7xl md:text-8xl lg:text-9xl text-white/30 text-right pb-24 tracking-tighter ${paragraph.className}`}
+                className={`text-7xl md:text-8xl lg:text-9xl text-white/30 text-right pb-24 pr-8 tracking-tighter ${paragraph.className}`}
               >
                 Mempelai
               </h3>
@@ -71,7 +108,7 @@ export default function Home() {
                   <Wiggle scale={1.5} />
                 </div>
                 <h3
-                  className={`text-7xl md:text-8xl lg:text-9xl overflow-x-clip text-[#BB543B] tracking-tighter ${paragraph.className}`}
+                  className={`text-7xl md:text-8xl lg:text-9xl overflow-x-clip pl-8 text-[#BB543B] tracking-tighter ${paragraph.className}`}
                 >
                   Perjalanan
                   <br />
@@ -85,13 +122,16 @@ export default function Home() {
             </motion.div>
           </Section>
           <Section id="detail">
-            <div className="mt-24 md:flex md:justify-center md:items-center pb-48">
+            <div className="mt-24 md:flex md:justify-center md:items-center pb-24">
               <Counter />
             </div>
+            <div className="pb-48">
+              <Dresscode />
+            </div>
           </Section>
-          <Player url="/september-ceria.mp3" />
+          <Player url="/music/september-ceria.mp3" />
           <Qr />
-          <Footer />
+          <Footer guest={guest} />
         </div>
       </div>
     </SmoothScrollProvider>

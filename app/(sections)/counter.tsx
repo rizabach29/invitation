@@ -60,6 +60,15 @@ const ShiftingCountdown = () => {
           Jl. Raya Darmo No.68 - 78, DR. Soetomo, <br />
           Kec. Tegalsari, Surabaya, Jawa Timur 60264
         </p>
+        {/* add gmaps link button */}
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Jl.+Raya+Darmo+No.68+-+78,+DR.+Soetomo,+Kec.+Tegalsari,+Surabaya,+Jawa+Timur+60264"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-4 px-4 py-2 bg-[#BB543B] text-white rounded-md"
+        >
+          Buka di Google Maps
+        </a>
       </div>
       <div
         className={`w-full ${paragraph.className} pb-24 px-8 text-[#BB543B] flex items-center justify-between gap-4 md:gap-8 lg:gap-12`}

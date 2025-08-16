@@ -1,7 +1,9 @@
 import React from "react";
-import { paragraph } from "../font";
+import { heading, paragraph } from "../font";
 import { motion } from "framer-motion";
-import Mercure from "@/app/public/mercure.webp";
+import SdImage from "@/app/public/sd_2.png";
+import PsTuri from "@/app/public/psturi-resize.jpeg";
+import Lamaran from "@/app/public/lamaran-resize.jpeg";
 import Image from "next/image";
 
 const stories = [
@@ -12,7 +14,8 @@ const stories = [
       "Teman sekelas dan teman les yang bersaing untuk mendapatkan ranking 1, yang berebut perhatian guru dengan olokan lucu.",
       "Teman sekelas yang diam-diam saling naksir dibalik cibiran dan keusilan, cinta monyet yang membekas hingga bertahun-tahun kemudian.",
     ],
-    color: "#BC533B",
+    color: "#fef3c7",
+    image: SdImage,
   },
   {
     title: "2022",
@@ -22,6 +25,7 @@ const stories = [
       "Dua minggu sejak pertemuan pertama setelah lebih dari 10 tahun, pada 1 Oktober 2022 Dinnar dan Riza memutuskan untuk menjalin hubungan. ",
     ],
     color: "#fde68a",
+    image: PsTuri,
   },
   {
     title: "2025",
@@ -31,6 +35,7 @@ const stories = [
       "Dengan ridho-Nya, memulai perjalanan teman kecil yang menjadi teman hidup selamanya. ",
     ],
     color: "#fef3c7",
+    image: Lamaran,
   },
 ];
 
@@ -39,37 +44,41 @@ function StoryCard() {
     <div className="min-h-[240vh]">
       {stories.map((story, index) => (
         <motion.div
-          className={`${paragraph.className} sticky top-4 min-h-[80vh] h-full py-2 px-12 rounded-tl-3xl rounded-b-3xl rounded-tr-[100px]`}
+          className={`${paragraph.className} sticky top-4 min-h-[80vh] h-full py-2 px-12 rounded-tr-3xl rounded-b-3xl rounded-tl-[100px]`}
           key={index}
           style={{
             backgroundColor: story.color,
             top: `calc(5vh + ${index * 60}px)`,
           }}
         >
-          <h2 className="text-6xl w-full text-right pr-12">{story.title}</h2>
+          <h2
+            className={`text-6xl w-full text-right tracking-widest text-lime-900 ${heading.className}`}
+          >
+            {story.title}
+          </h2>
           <div className="flex items-center justify-center">
             <motion.ul
-              className="h-full mt-8 text-sm max-w-md"
+              className="h-full mt-8 max-w-md"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
               {story.description.map((desc, i) => (
-                <li key={i} className="mb-4 indent-8">
+                <p key={i} className="mb-2 indent-8 text-sm text-lime-900">
                   {desc}
-                </li>
+                </p>
               ))}
             </motion.ul>
           </div>
           <motion.div
-            className="mt-20 pb-8"
+            className="mt-8 pb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
           >
             <Image
               key={index}
-              src={Mercure}
+              src={story.image}
               alt={story.title}
               width={2000}
               className={`w-full h-64 rounded-2xl object-cover transition-transform duration-300 grayscale`}
