@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { paragraph } from "../font";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import SmoothMarquee from "../(components)/smooth-marque";
 import Messages from "./messages";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
@@ -13,6 +12,15 @@ import { Input } from "@/components/ui/input";
 import { Database } from "../type";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import { CheckCircle } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function Footer({
   guest,
@@ -20,6 +28,8 @@ function Footer({
   guest: Database["public"]["Tables"]["guests"]["Row"] | null;
 }) {
   const [loading, setLoading] = useState(false);
+  const [presence, setPresence] = useState(false);
+  const [guestNumAttd, setGuestNumAttd] = useState<string | undefined>("0");
   const [wish, setWish] = useState({
     guest: "",
     message: "",
@@ -49,12 +59,13 @@ function Footer({
     setWish({ guest: "", message: "" });
   };
 
-  const presence = async (isPresence: boolean) => {
+  const handlePresence = async (isPresence: boolean) => {
     const supabase = createClient();
     const { error } = await supabase
       .from("guests")
       .update({
         is_present: isPresence,
+        guest_num_attd: isPresence ? Number(guestNumAttd) : 0,
       })
       .eq("id", guest?.id);
 
@@ -68,51 +79,84 @@ function Footer({
 
   return (
     <div
-      className="relative min-h-screen"
-      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+      className="relative min-h-screen w-full"
+      // style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       {/* create rsvp form */}
       <motion.div
-        className="fixed bottom-0 h-screen w-full max-w-2xl bg-stone-200 flex flex-col justify-end items-center"
+        className=" min-h-screen w-full max-w-xl bg-[#fef3c7] flex flex-col justify-center items-center rounded-tr-3xl rounded-bl-3xl rounded-tl-full rounded-br-full"
         initial={{ y: 100 }}
         whileInView={{ y: 0 }}
         transition={{ duration: 1 }}
       >
-        <div className="w-full flex justify-center items-center h-full max-w-2xl">
-          <div className="p-8 w-full flex flex-col max-w-2xl">
+        <div className="w-full flex justify-center items-center h-full max-w-xl">
+          <div className="p-8 w-full flex flex-col max-w-xl">
             {guest && (
               <>
                 <div className="w-full flex justify-between mb-4">
                   <h2
-                    className={`${paragraph.className} text-2xl text-lime-900`}
+                    className={`${paragraph.className} text-2xl text-[#BB543B]`}
                   >
                     Konfirmasi Kehadiran
                   </h2>
-                  <p className={`${paragraph.className} text-lime-900 p-0 m-0`}>
+                  <p
+                    className={`${paragraph.className} text-[#BB543B] p-0 m-0`}
+                  >
                     {guest.name}
                   </p>
                 </div>
-                <div className="flex gap-2 w-full mb-12">
+                <div className="w-full mb-12">
+                  <div className="flex gap-2 w-full">
+                    <Button
+                      className={`w-full text-[#BB543B] border-[#BB543B] ${
+                        !presence ? "border-2 font-bold" : "border-0"
+                      } `}
+                      variant={"outline"}
+                      onClick={() => setPresence(false)}
+                    >
+                      {!presence && <CheckCircle />}
+                      Tidak Hadir
+                    </Button>
+                    <Button
+                      className={`w-full text-[#BB543B] border-[#BB543B] ${
+                        presence ? "border-2 font-bold" : "border-0"
+                      } `}
+                      variant={"outline"}
+                      onClick={() => setPresence(true)}
+                    >
+                      {presence && <CheckCircle />}
+                      Hadir
+                    </Button>
+                  </div>
+                  {presence ? (
+                    <Select
+                      value={guestNumAttd}
+                      onValueChange={setGuestNumAttd}
+                    >
+                      <SelectTrigger className="w-full bg-white mt-2">
+                        <SelectValue placeholder="Pilih banyak orang" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="1">1 Orang</SelectItem>
+                          <SelectItem value="2">2 Orang</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  ) : null}
                   <Button
-                    className="w-full text-lime-900"
-                    variant={"outline"}
-                    onClick={() => presence(false)}
+                    className="bg-[#BB543B] text-white w-full mt-4"
+                    onClick={() => handlePresence(presence)}
                   >
-                    Tidak Hadir
-                  </Button>
-                  <Button
-                    className="w-full bg-lime-900 text-white"
-                    onClick={() => presence(true)}
-                  >
-                    Hadir
+                    Kirim
                   </Button>
                 </div>
-                <Separator className="mt-4 mb-16 border-gray-300 border-[1px]" />
+                <Separator className="mt-4 mb-16 border-[#BB543B] border-[1px]" />
               </>
             )}
             <div className="mb-4 w-full">
               <h2
-                className={`${paragraph.className} text-2xl mb-4 text-right text-lime-900`}
+                className={`${paragraph.className} text-2xl mb-4 text-right text-[#BB543B]`}
               >
                 Tinggalkan Pesan untuk Mempelai
               </h2>
@@ -134,7 +178,7 @@ function Footer({
             </div>
             <Button
               onClick={handleSubmit}
-              className="bg-lime-900 text-white"
+              className="bg-[#BB543B] text-white"
               disabled={loading}
             >
               Kirim
@@ -142,22 +186,17 @@ function Footer({
             <Dialog>
               <DialogTrigger asChild>
                 <Button
-                  className="text-lime-900 bg-transparent mt-4"
+                  className="text-[#BB543B] bg-transparent mt-4"
                   variant={"ghost"}
                 >
                   Lihat Pesan
                 </Button>
               </DialogTrigger>
-              <DialogContent className="w-full max-w-2xl">
+              <DialogContent className="w-full max-w-xl">
                 <Messages />
               </DialogContent>
             </Dialog>
           </div>
-        </div>
-        <div
-          className={`text-7xl text-center text-[#BB543B] mb-4 uppercase ${paragraph.className}`}
-        >
-          <SmoothMarquee text="SEPTEMBER CERIA . SEPTEMBER CERIA . " />
         </div>
       </motion.div>
     </div>

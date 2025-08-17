@@ -1,10 +1,9 @@
 "use client";
 
-import { useAnimate, motion, useScroll, useTransform } from "framer-motion";
+import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { paragraph } from "../font";
-import Image from "next/image";
-import Mercure from "@/app/public/mercure.webp";
+import { Separator } from "@/components/ui/separator";
 
 // NOTE: Change this date to whatever date you want to countdown to :)
 const COUNTDOWN_FROM = "2025-09-21";
@@ -15,21 +14,9 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
 const ShiftingCountdown = () => {
-  const target = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, -420]);
-
   return (
-    <div
-      className="py-4 relative w-full flex flex-col justify-center overflow-x-clip gap-2 "
-      ref={target}
-    >
-      <div className="absolute -right-5 -bottom-5">
+    <div className="py-4 relative w-full flex flex-col justify-center overflow-x-clip gap-2 ">
+      <div className="absolute right-0 -bottom-5">
         <p
           className={`text-black/5 text-[12rem] p-0 m-0 leading-none text-right font-black`}
         >
@@ -40,15 +27,6 @@ const ShiftingCountdown = () => {
           25
         </p>
       </div>
-      <motion.div style={{ y }}>
-        <Image
-          src={Mercure}
-          alt="mercure"
-          width={500}
-          height={500}
-          className="w-full h-[200px] grayscale object-cover object-center rounded-l-full absolute left-48"
-        />
-      </motion.div>
       <div
         className={`w-full ${paragraph.className} py-24 px-8 text-[#BB543B] `}
       >
@@ -79,8 +57,14 @@ const ShiftingCountdown = () => {
           <p>2025</p>
         </div>
         <div className="text-right">
-          <div className="text-7xl md:text-9xl">11.00</div>
-          <div className="text-3xl md:text-5xl">Akad</div>
+          <div className="text-4xl md:text-5xl">08.00</div>
+          <div className="text-2xl md:text-3xl">Akad</div>
+          <Separator className="my-2" />
+          <div className="text-4xl md:text-5xl">
+            12.00
+            <br />- 13.30
+          </div>
+          <div className="text-2xl md:text-3xl">Resepsi</div>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-4 w-full">

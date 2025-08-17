@@ -5,9 +5,9 @@ export default function SmoothMarquee({ text }: { text: string }) {
     <span className="relative overflow-hidden whitespace-nowrap">
       <motion.span
         className="flex gap-8 px-4"
-        animate={{ x: ["0%", "-20%"] }}
+        animate={{ x: ["0%", "-70%"] }}
         transition={{
-          duration: 20,
+          duration: 5,
           ease: "linear",
           repeat: Infinity,
         }}

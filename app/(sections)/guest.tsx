@@ -11,7 +11,7 @@ function Guest({
 }) {
   if (!guest) return null;
   return (
-    <motion.div className="w-full max-w-2xl flex justify-end">
+    <motion.div className="w-full max-w-xl flex justify-end">
       <motion.div
         initial={{ x: "100%" }}
         whileInView={{ x: 0 }}
@@ -22,7 +22,7 @@ function Guest({
           initial={{ x: "100%" }}
           whileInView={{ x: 0 }}
           transition={{ duration: 1, delay: 0.07 }}
-          className="text-sm"
+          className="text-xs"
         >
           Mengundang Bapak/Ibu
         </motion.p>
@@ -30,7 +30,7 @@ function Guest({
           initial={{ x: "100%" }}
           whileInView={{ x: 0 }}
           transition={{ duration: 1, delay: 0.025 }}
-          className="mt-2 font-bold"
+          className="mt-2 font-bold text-sm"
         >
           {guest.name}
         </motion.h3>

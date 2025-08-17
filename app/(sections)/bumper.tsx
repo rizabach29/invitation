@@ -38,7 +38,7 @@ function Bumper({
   return (
     <div
       ref={ref}
-      className="w-full h-[200vh] bg-[#BB543B] overflow-clip relative"
+      className="w-full h-[160vh] bg-[#BB543B] overflow-clip relative"
     >
       <motion.div className="top-0 sticky h-screen w-full flex flex-col items-center justify-center">
         <div className="w-full max-w-xs flex flex-col items-center justify-center relative">
@@ -138,16 +138,14 @@ function Bumper({
           </div>
         </div>
         <div className="flex w-full">
-          <motion.div
+          {/* <motion.div
             className="absolute w-full flex items-center justify-center my-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
           >
             <div className="flex justify-center items-center">
-              {/* Mouse outline */}
               <div className="relative w-8 h-14 border-4 border-white rounded-full flex justify-center">
-                {/* Animated dot */}
                 <motion.span
                   className="absolute w-2 h-2 bg-white rounded-full"
                   initial={{ y: 0 }}
@@ -160,20 +158,20 @@ function Bumper({
                 />
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
           <div className="w-full flex justify-center items-center">
             <Guest guest={guest} />
           </div>
         </div>
       </motion.div>
-      <div className="sticky bottom-0 h-screen flex items-center justify-center inset-0">
+      <div className="sticky bottom-0 h-[110vh] flex items-center justify-center">
         <svg
           width="433"
           height="216"
           viewBox="0 0 433 216"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-screen w-full max-w-2xl  text-center"
+          className="h-full w-full max-w-xl text-center"
         >
           <motion.path
             d="M213.75 23.0302C221.18 22.5402 225.46 28.2702 223.7 35.3702C222.27 41.1502 216.55 46.1302 211.95 49.5202C210.14 50.8602 204.35 55.0902 202.4 55.1002C198.97 55.1102 192.15 49.4202 189.56 47.0602C185.45 43.3002 179.77 37.0502 180.7 31.0102C180.88 29.8302 182.22 28.5502 183.27 28.0602C188.96 25.4002 193.92 30.6802 198.28 33.4802C202.39 28.7202 206.99 23.4702 213.74 23.0302H213.75Z"

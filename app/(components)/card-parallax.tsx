@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "./style.module.scss";
-import { MotionValue, useTransform, motion } from "framer-motion";
+import { MotionValue, motion } from "framer-motion";
 import { paragraph } from "../font";
 
 type Props = {
@@ -15,16 +15,7 @@ type Props = {
   targetScale: number;
 };
 
-const CardParallax = ({
-  title,
-  description,
-  src,
-  progress,
-  range,
-  targetScale,
-}: Props) => {
-  const scale = useTransform(progress, range, [1, targetScale]);
-
+const CardParallax = ({ title, description, src }: Props) => {
   return (
     <div className="rounded sticky top-0 h-screen pb-36 flex flex-col items-center justify-center">
       <motion.div className="rounded relative flex">

@@ -16,11 +16,13 @@ import { motion } from "framer-motion";
 import Bumper from "./(sections)/bumper";
 import Player from "./(components)/music";
 import StoryCard from "./(sections)/story-card";
-import Qr from "./qr-code";
 import Dresscode from "./(sections)/dresscode";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { Database } from "./type";
+import Dinnar from "./sources/illustration/Dinnar";
+import Riza from "./sources/illustration/Riza";
+import Logo from "./sources/Logo";
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
@@ -65,7 +67,10 @@ export default function Home() {
   return (
     <SmoothScrollProvider>
       <div className="w-full flex flex-col items-center">
-        <div className="snap-y snap-mandatory max-w-2xl" ref={ref}>
+        <div
+          className="snap-y snap-mandatory max-w-xl overflow-x-clip"
+          ref={ref}
+        >
           <Section id="bumper">
             <Bumper guest={guest} />
           </Section>
@@ -98,7 +103,7 @@ export default function Home() {
           </Section>
           <Section id="story">
             <motion.div
-              className="h-[350vh] w-full bg-amber-100 py-52 rounded-bl-[350px] rounded-tr-[350px] rounded-tl-[50px] rounded-br-[50px] flex flex-col"
+              className="h-[330vh] w-full bg-amber-100 py-52 rounded-bl-[350px] rounded-tr-[350px] rounded-tl-[50px] rounded-br-[50px] flex flex-col"
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               transition={{ duration: 1, reverse: true, type: "spring" }}
@@ -108,7 +113,7 @@ export default function Home() {
                   <Wiggle scale={1.5} />
                 </div>
                 <h3
-                  className={`text-7xl md:text-8xl lg:text-9xl overflow-x-clip pl-8 text-[#BB543B] tracking-tighter ${paragraph.className}`}
+                  className={`text-7xl lg:text-8xl overflow-x-clip pl-8 text-[#BB543B] tracking-tighter ${paragraph.className}`}
                 >
                   Perjalanan
                   <br />
@@ -125,13 +130,39 @@ export default function Home() {
             <div className="mt-24 md:flex md:justify-center md:items-center pb-24">
               <Counter />
             </div>
-            <div className="pb-48">
+            <div className="pb-24">
               <Dresscode />
+              {/* <div
+                className={`text-5xl text-center w-screen max-w-xl text-[#BB543B] mt-36 uppercase ${paragraph.className}`}
+              >
+                <SmoothMarquee text="SEPTEMBER CERIA . SEPTEMBER CERIA . SEPTEMBER CERIA ." />
+              </div> */}
             </div>
           </Section>
           <Player url="/music/september-ceria.mp3" />
-          <Qr />
+          {/* <Qr /> */}
           <Footer guest={guest} />
+          <Section id="thx">
+            <div className="flex h-screen items-center justify-center flex-col">
+              <div className="flex items-end scale-75">
+                <Dinnar />
+                <Riza />
+              </div>
+              <h3
+                className={`-mt-10 text-5xl text-[#BB543B] tracking-tighter ${paragraph.className}`}
+              >
+                Terima Kasih
+              </h3>
+              <p
+                className={`text-lg text-center text-[#BB543B] ${paragraph.className}`}
+              >
+                Atas kehadiran dan doa restunya
+              </p>
+              <div className="mt-16">
+                <Logo color="#BB543B" scale={2} />
+              </div>
+            </div>
+          </Section>
         </div>
       </div>
     </SmoothScrollProvider>

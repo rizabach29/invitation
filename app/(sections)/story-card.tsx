@@ -1,5 +1,5 @@
 import React from "react";
-import { heading, paragraph } from "../font";
+import { paragraph } from "../font";
 import { motion } from "framer-motion";
 import SdImage from "@/app/public/sd_2.png";
 import PsTuri from "@/app/public/psturi-resize.jpeg";
@@ -41,7 +41,7 @@ const stories = [
 
 function StoryCard() {
   return (
-    <div className="min-h-[240vh]">
+    <div className="min-h-[180vh]">
       {stories.map((story, index) => (
         <motion.div
           className={`${paragraph.className} sticky top-4 min-h-[80vh] h-full py-2 px-12 rounded-tr-3xl rounded-b-3xl rounded-tl-[100px]`}
@@ -52,7 +52,7 @@ function StoryCard() {
           }}
         >
           <h2
-            className={`text-6xl w-full text-right tracking-widest text-lime-900 ${heading.className}`}
+            className={`text-6xl w-full text-right text-[#BB543B] ${paragraph.className}`}
           >
             {story.title}
           </h2>
@@ -64,14 +64,14 @@ function StoryCard() {
               transition={{ duration: 1, delay: 0.5 }}
             >
               {story.description.map((desc, i) => (
-                <p key={i} className="mb-2 indent-8 text-sm text-lime-900">
+                <p key={i} className="mb-2 indent-8 text-[#BB543B]">
                   {desc}
                 </p>
               ))}
             </motion.ul>
           </div>
           <motion.div
-            className="mt-8 pb-8"
+            className="mt-4 pb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}

@@ -34,7 +34,7 @@ function Bride({}: { scrollParentYProgress: MotionValue<number> }) {
 
   return (
     <motion.div className="flex justify-center">
-      <div className="w-full flex items-center overflow-clip max-w-2xl">
+      <div className="w-full flex items-center overflow-clip max-w-xl">
         <motion.div className="w-full h-full">
           <Slide {...data[0]} />
           <div

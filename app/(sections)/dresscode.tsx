@@ -3,7 +3,7 @@ import { paragraph } from "../font";
 import { motion } from "framer-motion";
 
 function Dresscode() {
-  const colors = ["#fefdfc", "#f0ddad", "#c29b73", "#822611", "#7e5230"];
+  const colors = ["#FFFEFE", "#C3A87F", "#BC543B", "#6A2C0F", "#8F1910"];
 
   const animation = {
     initial: { y: "100%" },
@@ -19,13 +19,20 @@ function Dresscode() {
 
   return (
     <div className="relative w-full h-full ">
-      <div className=" -bottom-5">
+      <div className="-bottom-5">
         <p
-          className={`text-black/5 text-[5rem] p-0 m-0 leading-none font-black ${paragraph.className}`}
+          className={`text-[#BB543B] text-[3rem] p-0 m-0 leading-none font-black ${paragraph.className}`}
         >
-          Dresscode
+          Tema Busana
         </p>
-      </div>{" "}
+      </div>
+      <div className="mb-8">
+        <p
+          className={`text-[#BB543B] text-[1rem] p-0 m-0 ml-12 leading-none font-black ${paragraph.className}`}
+        >
+          Warna Bumi
+        </p>
+      </div>
       <ul className="list-none pl-5 flex gap-2 justify-center items-center">
         {colors.map((color, index) => (
           <div key={index} className="overflow-hidden">
@@ -38,7 +45,7 @@ function Dresscode() {
                 delay: index * 4,
                 duration: 2,
               }}
-              className="inline-block mr-2 w-20 h-20 rounded-full relative border-4 border-red-900"
+              className="inline-block mr-2 w-12 h-12 rounded-full relative border-[.5px] border-red-900"
               key={index}
               style={{ backgroundColor: color }}
             ></motion.span>
