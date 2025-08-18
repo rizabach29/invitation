@@ -4,13 +4,14 @@ import React, { useState, useEffect } from "react";
 
 const useAudio = (url: string) => {
   const [audio, setAuido] = useState<HTMLAudioElement>();
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
   const toggle = () => setPlaying(!playing);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setAuido(new Audio(url));
+      setPlaying(true); // Start playing immediately
     }
   }, []);
 
@@ -40,7 +41,7 @@ const Player = ({ url }: { url: string }) => {
   return (
     <div>
       <button
-        className="p-4 rounded-full bg-white text-black font-black text-sm fixed z-50 bottom-6 right-6"
+        className="p-2 rounded-full bg-white text-black font-black text-sm fixed z-50 bottom-6 right-6"
         onClick={() => toggle()}
       >
         {playing ? "Pause" : "Play"}

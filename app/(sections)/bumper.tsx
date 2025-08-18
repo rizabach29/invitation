@@ -138,27 +138,6 @@ function Bumper({
           </div>
         </div>
         <div className="flex w-full">
-          {/* <motion.div
-            className="absolute w-full flex items-center justify-center my-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-          >
-            <div className="flex justify-center items-center">
-              <div className="relative w-8 h-14 border-4 border-white rounded-full flex justify-center">
-                <motion.span
-                  className="absolute w-2 h-2 bg-white rounded-full"
-                  initial={{ y: 0 }}
-                  animate={{ y: [0, 16, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-              </div>
-            </div>
-          </motion.div> */}
           <div className="w-full flex justify-center items-center">
             <Guest guest={guest} />
           </div>

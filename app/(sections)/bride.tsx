@@ -18,17 +18,17 @@ function Bride({}: { scrollParentYProgress: MotionValue<number> }) {
   const data: ItemType[] = [
     {
       type: "Mempelai Wanita",
-      name: "Dinnar Fatih Rahmatika Prasetya, S.E.",
+      name: "Dinnar Fatih Rahmatika Prasetya",
       child: "Putri dari",
-      father: "Andik Prasetyanto, S.E.",
-      mother: "Setyo Murti Ningsih, S.H.",
+      father: "Andik Prasetyanto",
+      mother: "Setyo Murti Ningsih",
     },
     {
       type: "Mempelai Pria",
-      name: "Muhammad Riza Bachtiar, S.Tr.Kom.",
+      name: "Muhammad Riza Bachtiar",
       child: "Putra dari",
-      father: "Muhammad Bachtiar, S.T.",
-      mother: "Dijah Lely Kartikarini, A.Md.",
+      father: "Muhammad Bachtiar",
+      mother: "Dijah Lely Kartikarini",
     },
   ];
 

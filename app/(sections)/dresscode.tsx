@@ -21,7 +21,7 @@ function Dresscode() {
     <div className="relative w-full h-full ">
       <div className="-bottom-5">
         <p
-          className={`text-[#BB543B] text-[3rem] p-0 m-0 leading-none font-black ${paragraph.className}`}
+          className={`text-[#BB543B] text-[3rem] p-0 m-0 pl-8 leading-none font-black ${paragraph.className}`}
         >
           Tema Busana
         </p>

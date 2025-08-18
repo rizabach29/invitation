@@ -10,7 +10,6 @@ import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Database } from "../type";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { CheckCircle } from "lucide-react";
 import {
@@ -183,19 +182,7 @@ function Footer({
             >
               Kirim
             </Button>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  className="text-[#BB543B] bg-transparent mt-4"
-                  variant={"ghost"}
-                >
-                  Lihat Pesan
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="w-full max-w-xl">
-                <Messages />
-              </DialogContent>
-            </Dialog>
+            <Messages />
           </div>
         </div>
       </motion.div>

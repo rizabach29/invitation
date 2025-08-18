@@ -164,6 +164,29 @@ export default function Home() {
             </div>
           </Section>
         </div>
+        <div className="fixed z-40 bottom-0 w-full h-16 flex items-center justify-center">
+          <motion.div
+            className="w-full flex items-center justify-center my-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+          >
+            <div className="flex justify-center items-center bg-black/20 p-1 rounded-full backdrop-blur-sm">
+              <div className="relative w-6 h-10 border-4 border-white rounded-full flex justify-center">
+                <motion.span
+                  className="absolute w-2 h-2 bg-white rounded-full"
+                  initial={{ y: 0 }}
+                  animate={{ y: [0, 16, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </SmoothScrollProvider>
   );
