@@ -92,7 +92,7 @@ function Footer({
           <div className="p-8 w-full flex flex-col max-w-xl">
             {guest && (
               <>
-                <div className="w-full flex justify-between mb-4">
+                <div className="w-full mb-4">
                   <h2
                     className={`${paragraph.className} text-2xl text-[#BB543B]`}
                   >
