@@ -16,7 +16,7 @@ function Guest({
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="text-right text-[#BC533B] bg-amber-50 pt-2 pb-3 px-8 rounded-full"
+        className="text-center text-[#BC533B] bg-amber-50 pt-2 pb-3 px-8 rounded-full"
       >
         <motion.p
           initial={{ y: "100%" }}
@@ -24,7 +24,7 @@ function Guest({
           transition={{ duration: 1, delay: 0.07 }}
           className="text-xs"
         >
-          Mengundang Bapak/Ibu
+          Mengundang Saudara/i
         </motion.p>
         <motion.h3
           initial={{ y: "100%" }}
