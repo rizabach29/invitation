@@ -137,10 +137,8 @@ function Bumper({
             </span>
           </div>
         </div>
-        <div className="flex w-full">
-          <div className="w-full flex justify-center items-center">
-            <Guest guest={guest} />
-          </div>
+        <div className="w-full flex justify-center items-center">
+          <Guest guest={guest} />
         </div>
       </motion.div>
       <div className="sticky bottom-0 h-[110vh] flex items-center justify-center">
