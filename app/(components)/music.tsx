@@ -11,7 +11,6 @@ const useAudio = (url: string) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setAuido(new Audio(url));
-      setPlaying(true); // Start playing immediately
     }
   }, []);
 
