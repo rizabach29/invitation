@@ -4,9 +4,10 @@ import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { paragraph } from "../font";
 import { Separator } from "@/components/ui/separator";
+import { useSearchParams } from "next/navigation";
 
 // NOTE: Change this date to whatever date you want to countdown to :)
-const COUNTDOWN_FROM = "2025-09-21";
+const COUNTDOWN_FROM = "2025-09-21T08:00:00";
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
@@ -14,6 +15,10 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
 const ShiftingCountdown = () => {
+  const searchParams = useSearchParams();
+
+  const type = searchParams.get("type");
+
   return (
     <div className="py-4 relative w-full flex flex-col justify-center overflow-x-clip gap-2 ">
       <div className="absolute right-0 -bottom-5">
@@ -61,8 +66,17 @@ const ShiftingCountdown = () => {
           <div className="text-2xl md:text-3xl">Akad</div>
           <Separator className="my-2" />
           <div className="text-4xl md:text-5xl">
-            12.00
-            <br />- 13.30
+            {type === "family" ? (
+              <>
+                11.00
+                <br />- 12.30
+              </>
+            ) : (
+              <>
+                12.00
+                <br />- 13.30
+              </>
+            )}
           </div>
           <div className="text-2xl md:text-3xl">Resepsi</div>
         </div>
