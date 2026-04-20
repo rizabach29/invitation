@@ -1,0 +1,156 @@
+import { motion, type Variants } from 'motion/react'
+import type { ReactNode } from 'react'
+
+interface AnimatedSectionProps {
+  children: ReactNode
+  className?: string
+  delay?: number
+  direction?: 'up' | 'down' | 'left' | 'right' | 'none'
+  duration?: number
+  once?: boolean
+  amount?: number
+}
+
+const getVariants = (direction: string, distance = 60): Variants => {
+  const directions: Record<string, { x?: number; y?: number }> = {
+    up: { y: distance },
+    down: { y: -distance },
+    left: { x: distance },
+    right: { x: -distance },
+    none: {},
+  }
+  const offset = directions[direction] || {}
+  return {
+    hidden: { opacity: 0, filter: 'blur(8px)', ...offset },
+    visible: { opacity: 1, filter: 'blur(0px)', x: 0, y: 0 },
+  }
+}
+
+export function AnimatedSection({
+  children,
+  className = '',
+  delay = 0,
+  direction = 'up',
+  duration = 0.8,
+  once = true,
+  amount = 0.2,
+}: AnimatedSectionProps) {
+  return (
+    <motion.div
+      variants={getVariants(direction)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, amount }}
+      transition={{
+        duration,
+        delay,
+        ease: [0.25, 0.4, 0, 1], // custom cubic-bezier for silk-smooth feel
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+// Staggered children wrapper
+interface StaggerContainerProps {
+  children: ReactNode
+  className?: string
+  staggerDelay?: number
+  once?: boolean
+}
+
+export function StaggerContainer({
+  children,
+  className = '',
+  staggerDelay = 0.1,
+  once = true,
+}: StaggerContainerProps) {
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, amount: 0.15 }}
+      transition={{ staggerChildren: staggerDelay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+export function StaggerItem({
+  children,
+  className = '',
+  direction = 'up',
+}: {
+  children: ReactNode
+  className?: string
+  direction?: 'up' | 'down' | 'left' | 'right' | 'none'
+}) {
+  return (
+    <motion.div
+      variants={getVariants(direction)}
+      transition={{ duration: 0.7, ease: [0.25, 0.4, 0, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+// Text reveal animation — splits text and animates each word
+export function TextReveal({
+  text,
+  className = '',
+  delay = 0,
+  as: Tag = 'p',
+}: {
+  text: string
+  className?: string
+  delay?: number
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
+}) {
+  const words = text.split(' ')
+  return (
+    <Tag className={className}>
+      <motion.span
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ staggerChildren: 0.04, delayChildren: delay }}
+        className="inline"
+      >
+        {words.map((word, i) => (
+          <span key={i} className="inline-block overflow-hidden">
+            <motion.span
+              variants={{
+                hidden: { y: '110%', rotate: 3, opacity: 0 },
+                visible: { y: 0, rotate: 0, opacity: 1 },
+              }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0, 1] }}
+              className="inline-block"
+            >
+              {word}
+            </motion.span>
+            {i < words.length - 1 && '\u00A0'}
+          </span>
+        ))}
+      </motion.span>
+    </Tag>
+  )
+}
+
+// Horizontal decorative line that draws itself
+export function AnimatedLine({ className = '' }: { className?: string }) {
+  return (
+    <motion.div
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 1.2, ease: [0.25, 0.4, 0, 1] }}
+      className={`h-px bg-gold/40 origin-left ${className}`}
+    />
+  )
+}
