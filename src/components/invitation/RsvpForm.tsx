@@ -57,7 +57,7 @@ export function RsvpForm({ guest, onUpdate }: RsvpFormProps) {
     <section className="section-container">
       <div className="text-center mb-16">
         <AnimatedSection>
-          <p className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-4">
+          <p className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-4">
             Will You Join Us?
           </p>
         </AnimatedSection>
@@ -81,7 +81,7 @@ export function RsvpForm({ guest, onUpdate }: RsvpFormProps) {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
-                className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6"
+                className="w-16 h-16 rounded-full bg-sage/10 flex items-center justify-center mx-auto mb-6"
               >
                 <span className="text-2xl">
                   {status === 'confirmed' ? '💛' : '🙏'}
@@ -97,7 +97,7 @@ export function RsvpForm({ guest, onUpdate }: RsvpFormProps) {
               </p>
               <button
                 onClick={() => setSubmitted(false)}
-                className="mt-6 text-xs font-sans uppercase tracking-[0.2em] text-charcoal/30 hover:text-gold transition-colors"
+                className="mt-6 text-xs font-sans uppercase tracking-[0.2em] text-charcoal/30 hover:text-sage transition-colors"
               >
                 Change Response
               </button>
@@ -128,7 +128,7 @@ export function RsvpForm({ guest, onUpdate }: RsvpFormProps) {
                     whileTap={{ scale: 0.97 }}
                     className={`px-8 py-4 rounded-xl border-2 transition-all duration-300 font-sans text-sm tracking-wide ${
                       status === option
-                        ? 'border-gold bg-gold/5 text-charcoal'
+                        ? 'border-sage bg-sage/5 text-charcoal'
                         : 'border-charcoal/10 text-charcoal/40 hover:border-charcoal/20'
                     }`}
                   >
@@ -159,7 +159,7 @@ export function RsvpForm({ guest, onUpdate }: RsvpFormProps) {
                           type="button"
                           whileTap={{ scale: 0.9 }}
                           onClick={() => setAttendeeCount(Math.max(1, attendeeCount - 1))}
-                          className="w-10 h-10 rounded-full border border-charcoal/10 flex items-center justify-center text-charcoal/40 hover:border-gold hover:text-gold transition-colors"
+                          className="w-10 h-10 rounded-full border border-charcoal/10 flex items-center justify-center text-charcoal/40 hover:border-sage hover:text-sage transition-colors"
                         >
                           −
                         </motion.button>
@@ -170,7 +170,7 @@ export function RsvpForm({ guest, onUpdate }: RsvpFormProps) {
                           type="button"
                           whileTap={{ scale: 0.9 }}
                           onClick={() => setAttendeeCount(Math.min(guest.max_attendees, attendeeCount + 1))}
-                          className="w-10 h-10 rounded-full border border-charcoal/10 flex items-center justify-center text-charcoal/40 hover:border-gold hover:text-gold transition-colors"
+                          className="w-10 h-10 rounded-full border border-charcoal/10 flex items-center justify-center text-charcoal/40 hover:border-sage hover:text-sage transition-colors"
                         >
                           +
                         </motion.button>
@@ -192,7 +192,7 @@ export function RsvpForm({ guest, onUpdate }: RsvpFormProps) {
                   disabled={isSubmitting || status === 'pending'}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-12 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.15em] uppercase rounded-lg disabled:opacity-30 transition-all duration-300 hover:bg-gold"
+                  className="px-12 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.15em] uppercase rounded-lg disabled:opacity-30 transition-all duration-300 hover:bg-sage"
                 >
                   {isSubmitting ? (
                     <motion.span

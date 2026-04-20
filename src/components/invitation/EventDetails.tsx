@@ -29,7 +29,7 @@ function EventCard({
       className="group relative bg-white/60 backdrop-blur-sm border border-charcoal/5 rounded-2xl p-8 sm:p-10 text-center"
     >
       {/* Hover glow */}
-      <div className="absolute inset-0 rounded-2xl bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 rounded-2xl bg-sage/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="relative z-10">
         <span className="text-3xl mb-4 block">{icon}</span>
@@ -39,14 +39,14 @@ function EventCard({
         <p className="font-sans text-sm text-charcoal/50 mt-2 leading-relaxed">
           {address}
         </p>
-        <p className="font-sans text-sm text-gold font-medium mt-3 tracking-wide">
+        <p className="font-sans text-sm text-sage font-medium mt-3 tracking-wide">
           {formatTime(time)}
         </p>
         <a
           href={`https://maps.google.com/?q=${encodeURIComponent(mapQuery)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 mt-5 text-xs font-sans uppercase tracking-[0.2em] text-charcoal/40 hover:text-gold transition-colors duration-300"
+          className="inline-flex items-center gap-1.5 mt-5 text-xs font-sans uppercase tracking-[0.2em] text-charcoal/40 hover:text-sage transition-colors duration-300"
         >
           View Map
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,7 +63,7 @@ export function EventDetails({ details }: EventDetailsProps) {
     <section className="section-container">
       <div className="text-center mb-16">
         <AnimatedSection>
-          <p className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-4">
+          <p className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-4">
             Save the Date
           </p>
         </AnimatedSection>

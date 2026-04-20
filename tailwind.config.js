@@ -7,10 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#FAFAF5',
-        charcoal: '#2C2C2C',
-        gold: '#B8860B',
-        rose: '#C4A484',
+        cream: '#F4F5F0',
+        charcoal: '#252B22',
+        sage: '#7B9473',
+        'sage-light': '#A8BFA2',
+        'sage-dark': '#4A6245',
+        linen: '#E8EAE0',
       },
       fontFamily: {
         serif: ['Playfair Display', 'serif'],

@@ -109,7 +109,7 @@ export function Gallery({ images }: GalleryProps) {
     <section className="section-container">
       <div className="text-center mb-16">
         <AnimatedSection>
-          <p className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-4">
+          <p className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-4">
             Captured Moments
           </p>
         </AnimatedSection>

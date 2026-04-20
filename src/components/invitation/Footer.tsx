@@ -18,11 +18,11 @@ export function Footer({ details }: FooterProps) {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.25, 0.4, 0, 1] }}
         >
-          <p className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-6">
+          <p className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-6">
             With Love
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">
-            {details.groom_name} <span className="text-gold italic">&</span>{' '}
+            {details.groom_name} <span className="text-sage italic">&</span>{' '}
             {details.bride_name}
           </h2>
           <p className="font-sans text-sm text-charcoal/30 mt-8 tracking-wide">

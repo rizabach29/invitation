@@ -109,9 +109,9 @@ export function GalleryManager() {
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             placeholder="Caption (optional)"
-            className="flex-1 px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-gold transition-colors"
+            className="flex-1 px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-sage transition-colors"
           />
-          <label className="px-6 py-2.5 bg-charcoal text-cream font-sans text-xs tracking-[0.1em] uppercase rounded-lg hover:bg-gold transition-colors cursor-pointer text-center inline-flex items-center gap-2 disabled:opacity-50">
+          <label className="px-6 py-2.5 bg-charcoal text-cream font-sans text-xs tracking-[0.1em] uppercase rounded-lg hover:bg-sage transition-colors cursor-pointer text-center inline-flex items-center gap-2 disabled:opacity-50">
             {uploading ? 'Uploading...' : '📸 Upload'}
             <input
               type="file"
@@ -147,7 +147,7 @@ export function GalleryManager() {
                   defaultValue={image.caption || ''}
                   onBlur={(e) => updateCaption(image.id, e.target.value)}
                   placeholder="Caption..."
-                  className="w-full px-0 py-1 bg-transparent border-b border-charcoal/5 font-sans text-xs focus:outline-none focus:border-gold transition-colors"
+                  className="w-full px-0 py-1 bg-transparent border-b border-charcoal/5 font-sans text-xs focus:outline-none focus:border-sage transition-colors"
                 />
                 <div className="flex justify-between">
                   <div className="flex gap-1">

@@ -47,7 +47,7 @@ export function GuestForm({ guest, onSaved }: GuestFormProps) {
   }
 
   const inputClass =
-    'w-full px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-gold transition-colors'
+    'w-full px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-sage transition-colors'
   const labelClass =
     'block font-sans text-[10px] uppercase tracking-[0.15em] text-charcoal/40 mb-1.5'
 
@@ -120,7 +120,7 @@ export function GuestForm({ guest, onSaved }: GuestFormProps) {
         <button
           type="submit"
           disabled={saving}
-          className="px-6 py-2.5 bg-charcoal text-cream font-sans text-xs tracking-[0.1em] uppercase rounded-lg hover:bg-gold transition-colors disabled:opacity-50"
+          className="px-6 py-2.5 bg-charcoal text-cream font-sans text-xs tracking-[0.1em] uppercase rounded-lg hover:bg-sage transition-colors disabled:opacity-50"
         >
           {saving ? 'Saving...' : guest ? 'Update' : 'Create'}
         </button>

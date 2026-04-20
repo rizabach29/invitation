@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import type { LoveStoryEntry } from '@/lib/types'
-import { AnimatedSection, TextReveal, StaggerContainer, StaggerItem } from './AnimatedSection'
+import { AnimatedSection, TextReveal, StaggerContainer, StaggerItem, MaskReveal } from './AnimatedSection'
 
 interface LoveStoryProps {
   entries: LoveStoryEntry[]
@@ -15,13 +15,13 @@ function TimelineNode({ index }: { index: number }) {
       transition={{ delay: 0.2, type: 'spring', stiffness: 200, damping: 15 }}
       className="absolute -translate-x-1/2 top-0 z-10"
     >
-      <div className="w-3 h-3 rounded-full bg-gold ring-4 ring-cream" />
+      <div className="w-3 h-3 rounded-full bg-sage ring-4 ring-cream" />
       <motion.span
         initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className={`absolute top-1/2 -translate-y-1/2 text-[10px] font-sans tracking-[0.2em] text-gold/60 whitespace-nowrap ${
+        className={`absolute top-1/2 -translate-y-1/2 text-[10px] font-sans tracking-[0.2em] text-sage/60 whitespace-nowrap ${
           index % 2 === 0 ? 'right-8' : 'left-8'
         } hidden md:block`}
       />
@@ -46,7 +46,7 @@ function TimelineEntry({ entry, index }: { entry: LoveStoryEntry; index: number 
           whileInView={{ scaleY: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.25, 0.4, 0, 1] }}
-          className="w-px bg-gold/20 h-full origin-top"
+          className="w-px bg-sage/20 h-full origin-top"
         />
       </div>
 
@@ -67,7 +67,7 @@ function TimelineContent({ entry, align }: { entry: LoveStoryEntry; align: 'left
   return (
     <AnimatedSection direction={align === 'left' ? 'left' : 'right'}>
       <div className="pb-12">
-        <span className="text-xs font-sans uppercase tracking-[0.3em] text-gold/60">
+        <span className="text-xs font-sans uppercase tracking-[0.3em] text-sage/60">
           {entry.year}
         </span>
         <h3 className="font-serif text-xl sm:text-2xl text-charcoal mt-2 mb-3">
@@ -88,15 +88,17 @@ export function LoveStory({ entries }: LoveStoryProps) {
     <section className="section-container">
       <div className="text-center mb-16">
         <AnimatedSection>
-          <p className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-4">
+          <p className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-4">
             How It All Began
           </p>
         </AnimatedSection>
-        <TextReveal
-          text="Our Love Story"
-          as="h2"
-          className="text-4xl sm:text-5xl font-serif text-charcoal"
-        />
+        <MaskReveal delay={0.1}>
+          <TextReveal
+            text="Our Love Story"
+            as="h2"
+            className="text-4xl sm:text-5xl font-serif text-charcoal"
+          />
+        </MaskReveal>
       </div>
 
       <StaggerContainer staggerDelay={0.15} className="max-w-3xl mx-auto">
@@ -115,8 +117,8 @@ export function LoveStory({ entries }: LoveStoryProps) {
         transition={{ type: 'spring', stiffness: 200, damping: 15 }}
         className="flex justify-center mt-4"
       >
-        <div className="w-5 h-5 rounded-full bg-gold/20 flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-gold" />
+        <div className="w-5 h-5 rounded-full bg-sage/20 flex items-center justify-center">
+          <div className="w-2 h-2 rounded-full bg-sage" />
         </div>
       </motion.div>
     </section>

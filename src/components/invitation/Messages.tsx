@@ -58,7 +58,7 @@ export function MessageForm({ guestName }: MessageFormProps) {
             </p>
             <button
               onClick={() => setSubmitted(false)}
-              className="mt-4 text-xs font-sans uppercase tracking-[0.2em] text-charcoal/30 hover:text-gold transition-colors"
+              className="mt-4 text-xs font-sans uppercase tracking-[0.2em] text-charcoal/30 hover:text-sage transition-colors"
             >
               Send Another
             </button>
@@ -78,7 +78,7 @@ export function MessageForm({ guestName }: MessageFormProps) {
               onChange={(e) => setName(e.target.value)}
               placeholder="Your Name"
               required
-              className="w-full px-0 py-3 bg-transparent border-b border-charcoal/10 font-sans text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
+              className="w-full px-0 py-3 bg-transparent border-b border-charcoal/10 font-sans text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-sage transition-colors"
             />
             <textarea
               value={message}
@@ -86,7 +86,7 @@ export function MessageForm({ guestName }: MessageFormProps) {
               placeholder="Write your wishes for the couple..."
               required
               rows={4}
-              className="w-full px-0 py-3 bg-transparent border-b border-charcoal/10 font-sans text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors resize-none"
+              className="w-full px-0 py-3 bg-transparent border-b border-charcoal/10 font-sans text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-sage transition-colors resize-none"
             />
             <div className="text-center pt-2">
               <motion.button
@@ -94,7 +94,7 @@ export function MessageForm({ guestName }: MessageFormProps) {
                 disabled={isSubmitting || !message.trim()}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-10 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.15em] uppercase rounded-lg disabled:opacity-30 transition-all hover:bg-gold"
+                className="px-10 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.15em] uppercase rounded-lg disabled:opacity-30 transition-all hover:bg-sage"
               >
                 {isSubmitting ? 'Sending...' : 'Send Wishes'}
               </motion.button>
@@ -147,7 +147,7 @@ export function MessageWall() {
             <motion.div
               whileHover={{ x: 4 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="group pl-5 border-l-2 border-gold/20 hover:border-gold/50 transition-colors"
+              className="group pl-5 border-l-2 border-sage/20 hover:border-sage/50 transition-colors"
             >
               <p className="font-sans text-sm text-charcoal/70 leading-relaxed italic">
                 "{msg.message}"
@@ -168,7 +168,7 @@ export function MessagesSection({ guestName }: { guestName: string }) {
     <section className="section-container">
       <div className="text-center mb-16">
         <AnimatedSection>
-          <p className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-4">
+          <p className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-4">
             Words of Love
           </p>
         </AnimatedSection>

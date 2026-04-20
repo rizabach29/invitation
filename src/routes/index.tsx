@@ -12,7 +12,7 @@ function Home() {
         initial={{ opacity: 0, letterSpacing: '0.1em' }}
         animate={{ opacity: 1, letterSpacing: '0.35em' }}
         transition={{ duration: 1.2, ease: [0.25, 0.4, 0, 1] }}
-        className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-8"
+        className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-8"
       >
         Interactive Wedding Invitation
       </motion.p>
@@ -24,7 +24,7 @@ function Home() {
         className="text-5xl sm:text-7xl font-serif font-bold text-charcoal leading-tight"
       >
         Elegant &<br />
-        <span className="text-gold italic">Memorable</span>
+        <span className="text-sage italic">Memorable</span>
       </motion.h1>
 
       <motion.p

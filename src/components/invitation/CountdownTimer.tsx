@@ -42,7 +42,7 @@ function Separator() {
     <motion.span
       animate={{ opacity: [0.2, 0.6, 0.2] }}
       transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-      className="text-2xl font-serif text-gold/50 self-start mt-2"
+      className="text-2xl font-serif text-sage/50 self-start mt-2"
     >
       :
     </motion.span>

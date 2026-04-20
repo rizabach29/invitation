@@ -1,5 +1,5 @@
-import { motion, type Variants } from 'motion/react'
-import type { ReactNode } from 'react'
+import { motion, useInView, type Variants } from 'motion/react'
+import { useRef, type ReactNode } from 'react'
 
 interface AnimatedSectionProps {
   children: ReactNode
@@ -142,7 +142,38 @@ export function TextReveal({
   )
 }
 
-// Horizontal decorative line that draws itself
+// Cinematic mask-wipe reveal — linen overlay slides off from right, exposing content
+export function MaskReveal({
+  children,
+  className = '',
+  delay = 0,
+}: {
+  children: ReactNode
+  className?: string
+  delay?: number
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, amount: 0.4 })
+  return (
+    <div ref={ref} className={`relative inline-block overflow-hidden ${className}`}>
+      {children}
+      <motion.div
+        aria-hidden
+        initial={{ scaleX: 1 }}
+        animate={isInView ? { scaleX: 0 } : { scaleX: 1 }}
+        transition={{
+          duration: 0.85,
+          delay,
+          ease: [0.76, 0, 0.24, 1],
+        }}
+        style={{ originX: 1 }}
+        className="absolute inset-0 bg-linen"
+      />
+    </div>
+  )
+}
+
+// Animated horizontal rule that draws from left to right
 export function AnimatedLine({ className = '' }: { className?: string }) {
   return (
     <motion.div
@@ -150,7 +181,7 @@ export function AnimatedLine({ className = '' }: { className?: string }) {
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true, amount: 0.5 }}
       transition={{ duration: 1.2, ease: [0.25, 0.4, 0, 1] }}
-      className={`h-px bg-gold/40 origin-left ${className}`}
+      className={`h-px bg-sage/40 origin-left ${className}`}
     />
   )
 }

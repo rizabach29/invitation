@@ -6,7 +6,6 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -20,8 +19,8 @@
   }
 
   ::selection {
-    background-color: rgba(184, 134, 11, 0.15);
-    color: #2C2C2C;
+    background-color: rgba(123, 148, 115, 0.2);
+    color: #252B22;
   }
 
   /* Custom scrollbar */
@@ -46,10 +45,17 @@
   }
 
   .btn-primary {
-    @apply px-8 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.1em] uppercase rounded-lg hover:bg-gold transition-all duration-300;
+    @apply px-8 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.1em] uppercase rounded-lg transition-all duration-300;
+  }
+  .btn-primary:hover {
+    background-color: #4A6245;
   }
 
   .btn-secondary {
-    @apply px-8 py-3 border border-charcoal/20 text-charcoal font-sans text-sm tracking-[0.1em] uppercase rounded-lg hover:border-gold hover:text-gold transition-all duration-300;
+    @apply px-8 py-3 border border-charcoal/20 text-charcoal font-sans text-sm tracking-[0.1em] uppercase rounded-lg transition-all duration-300;
+  }
+  .btn-secondary:hover {
+    border-color: #7B9473;
+    color: #7B9473;
   }
 }

@@ -53,7 +53,7 @@ function DashboardLayout() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             autoFocus
-            className="w-full px-4 py-3 bg-cream/50 border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-gold transition-colors"
+            className="w-full px-4 py-3 bg-cream/50 border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-sage transition-colors"
           />
           {error && (
             <motion.p
@@ -66,7 +66,7 @@ function DashboardLayout() {
           )}
           <button
             type="submit"
-            className="w-full mt-4 px-6 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.1em] uppercase rounded-lg hover:bg-gold transition-colors"
+            className="w-full mt-4 px-6 py-3 bg-charcoal text-cream font-sans text-sm tracking-[0.1em] uppercase rounded-lg hover:bg-sage transition-colors"
           >
             Login
           </button>
@@ -130,7 +130,7 @@ function DashboardContent() {
           {[
             { label: 'Total Guests', value: stats.total, color: 'text-charcoal' },
             { label: 'Confirmed', value: stats.confirmed, color: 'text-green-600' },
-            { label: 'Pending', value: stats.pending, color: 'text-gold' },
+            { label: 'Pending', value: stats.pending, color: 'text-sage' },
             { label: 'Declined', value: stats.declined, color: 'text-red-400' },
           ].map((stat) => (
             <div
@@ -205,7 +205,7 @@ function GuestsTab() {
         <h2 className="font-serif text-xl text-charcoal">Guest List</h2>
         <button
           onClick={() => { setEditGuest(null); setShowForm(!showForm) }}
-          className="px-5 py-2 bg-charcoal text-cream font-sans text-xs tracking-[0.1em] uppercase rounded-lg hover:bg-gold transition-colors"
+          className="px-5 py-2 bg-charcoal text-cream font-sans text-xs tracking-[0.1em] uppercase rounded-lg hover:bg-sage transition-colors"
         >
           {showForm ? 'Cancel' : '+ Add Guest'}
         </button>

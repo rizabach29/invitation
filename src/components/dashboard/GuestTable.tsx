@@ -62,12 +62,12 @@ export function GuestTable({ onEdit, onRefresh }: GuestTableProps) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search guests..."
-          className="flex-1 px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-gold transition-colors"
+          className="flex-1 px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-sage transition-colors"
         />
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value as typeof filter)}
-          className="px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-gold"
+          className="px-4 py-2.5 bg-white border border-charcoal/10 rounded-lg font-sans text-sm focus:outline-none focus:border-sage"
         >
           <option value="all">All Status</option>
           <option value="confirmed">Confirmed</option>
@@ -123,7 +123,7 @@ export function GuestTable({ onEdit, onRefresh }: GuestTableProps) {
                       <div className="flex gap-2">
                         <button
                           onClick={() => copyLink(guest.slug)}
-                          className="text-[10px] font-sans uppercase tracking-wider text-charcoal/30 hover:text-gold transition-colors"
+                          className="text-[10px] font-sans uppercase tracking-wider text-charcoal/30 hover:text-sage transition-colors"
                           title="Copy invitation link"
                         >
                           Link

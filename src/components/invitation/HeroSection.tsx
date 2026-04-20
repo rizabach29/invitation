@@ -43,7 +43,7 @@ export function HeroSection({ details, guest }: HeroSectionProps) {
           initial={{ opacity: 0, letterSpacing: '0.1em' }}
           animate={{ opacity: 1, letterSpacing: '0.35em' }}
           transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.4, 0, 1] }}
-          className="text-xs font-sans uppercase tracking-[0.35em] text-gold/70 mb-8"
+          className="text-xs font-sans uppercase tracking-[0.35em] text-sage/70 mb-8"
         >
           Wedding Invitation
         </motion.p>
@@ -80,7 +80,7 @@ export function HeroSection({ details, guest }: HeroSectionProps) {
           }}
           className="my-4"
         >
-          <span className="text-3xl sm:text-5xl font-serif text-gold italic">&</span>
+          <span className="text-3xl sm:text-5xl font-serif text-sage italic">&</span>
         </motion.div>
 
         {/* Bride name */}
