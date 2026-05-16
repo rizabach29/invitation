@@ -46,50 +46,57 @@ CREATE TABLE IF NOT EXISTS gallery_images (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Enable Row Level Security
-ALTER TABLE wedding_details ENABLE ROW LEVEL SECURITY;
-ALTER TABLE guests ENABLE ROW LEVEL SECURITY;
-ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
-ALTER TABLE gallery_images ENABLE ROW LEVEL SECURITY;
-
--- RLS Policies for wedding_details (public read)
-CREATE POLICY "Allow public select on wedding_details"
-  ON wedding_details FOR SELECT
-  USING (true);
-
--- RLS Policies for guests (public select and update RSVP)
-CREATE POLICY "Allow public select on guests"
-  ON guests FOR SELECT
-  USING (true);
-
-CREATE POLICY "Allow public update on guests RSVP"
-  ON guests FOR UPDATE
-  USING (true)
-  WITH CHECK (true);
-
--- RLS Policies for messages (public select and insert)
-CREATE POLICY "Allow public select on messages"
-  ON messages FOR SELECT
-  USING (true);
-
-CREATE POLICY "Allow public insert on messages"
-  ON messages FOR INSERT
-  WITH CHECK (true);
-
--- RLS Policies for gallery_images (public read)
-CREATE POLICY "Allow public select on gallery_images"
-  ON gallery_images FOR SELECT
-  USING (true);
+-- Disable Row Level Security
+ALTER TABLE wedding_details DISABLE ROW LEVEL SECURITY;
+ALTER TABLE guests DISABLE ROW LEVEL SECURITY;
+ALTER TABLE messages DISABLE ROW LEVEL SECURITY;
+ALTER TABLE gallery_images DISABLE ROW LEVEL SECURITY;
 
 -- Create storage buckets
-INSERT INTO storage.buckets (id, name, public) VALUES ('gallery', 'gallery', true);
-INSERT INTO storage.buckets (id, name, public) VALUES ('hero', 'hero', true);
+INSERT INTO storage.buckets (id, name, public) VALUES ('gallery', 'gallery', true)
+  ON CONFLICT (id) DO NOTHING;
+INSERT INTO storage.buckets (id, name, public) VALUES ('hero', 'hero', true)
+  ON CONFLICT (id) DO NOTHING;
 
--- Set storage policies
-CREATE POLICY "Allow public read on gallery"
-  ON storage.objects FOR SELECT
-  USING (bucket_id = 'gallery');
+-- Storage policies (public access — no auth required)
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public select gallery' AND tablename = 'objects') THEN
+    CREATE POLICY "Public select gallery" ON storage.objects FOR SELECT USING (bucket_id = 'gallery');
+  END IF;
+END $$;
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public insert gallery' AND tablename = 'objects') THEN
+    CREATE POLICY "Public insert gallery" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'gallery');
+  END IF;
+END $$;
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public update gallery' AND tablename = 'objects') THEN
+    CREATE POLICY "Public update gallery" ON storage.objects FOR UPDATE USING (bucket_id = 'gallery');
+  END IF;
+END $$;
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public delete gallery' AND tablename = 'objects') THEN
+    CREATE POLICY "Public delete gallery" ON storage.objects FOR DELETE USING (bucket_id = 'gallery');
+  END IF;
+END $$;
 
-CREATE POLICY "Allow public read on hero"
-  ON storage.objects FOR SELECT
-  USING (bucket_id = 'hero');
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public select hero' AND tablename = 'objects') THEN
+    CREATE POLICY "Public select hero" ON storage.objects FOR SELECT USING (bucket_id = 'hero');
+  END IF;
+END $$;
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public insert hero' AND tablename = 'objects') THEN
+    CREATE POLICY "Public insert hero" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'hero');
+  END IF;
+END $$;
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public update hero' AND tablename = 'objects') THEN
+    CREATE POLICY "Public update hero" ON storage.objects FOR UPDATE USING (bucket_id = 'hero');
+  END IF;
+END $$;
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public delete hero' AND tablename = 'objects') THEN
+    CREATE POLICY "Public delete hero" ON storage.objects FOR DELETE USING (bucket_id = 'hero');
+  END IF;
+END $$;
